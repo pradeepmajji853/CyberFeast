@@ -161,13 +161,16 @@ export default function Events() {
                         className="relative aspect-[16/10] rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 p-6 flex items-center justify-center group cursor-pointer overflow-hidden"
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 animate-shimmer" />
-                        <Image
-                          src={`/logos/${company.file}`}
-                          alt={company.name}
-                          fill
-                          className="object-contain p-4 transition-transform duration-300 group-hover:scale-110"
-                        />
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 animate-shimmer" />
+                            <div className="relative w-40 h-20 flex items-center justify-center">
+                              <Image
+                                src={`/logos/${company.file}`}
+                                alt={company.name}
+                                width={160}
+                                height={80}
+                                className="object-contain transition-transform duration-300 group-hover:scale-110"
+                              />
+                            </div>
                       </motion.div>
                     ))}
                   </div>
