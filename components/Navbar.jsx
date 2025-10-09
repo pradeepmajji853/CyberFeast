@@ -29,7 +29,7 @@ export default function Navbar() {
             className="relative"
           >
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/50 to-cyan-500/50 rounded-md blur opacity-75 group-hover:opacity-100 transition duration-300" />
-            <Image src="/ddc_logo.jpg" alt="CyberFest" width={44} height={44} className="relative rounded-md shadow-neon animate-glow" />
+            <Image src="/logos/ddc_logo.jpg" alt="CyberFest" width={44} height={44} className="relative rounded-md shadow-neon animate-glow" />
           </motion.div>
           <span className="hidden md:block font-orbitron tracking-wider text-[#00B4FF] text-lg font-bold">CyberFest 2025</span>
         </motion.div>

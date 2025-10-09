@@ -52,36 +52,40 @@ export default function Events() {
           </p>
         </motion.div>
 
-        {/* Key Features Grid */}
+        {/* Key Features - Centered 3 Cards */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+          className="mb-16"
         >
-          {features.map((feature, idx) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
-              whileHover={{ y: -6, scale: 1.015, rotate: 0.2 }}
-              onMouseMove={handleMouseMove}
-              className="tilt group relative bg-gradient-to-br from-[#1a1f3a]/80 to-[#0e1833]/80 backdrop-blur-sm border border-cyan-500/20 rounded-2xl p-6 hover:border-cyan-400/40 transition-all duration-300"
-            >
-              <span aria-hidden className="interactive-spotlight rounded-2xl" />
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300" />
-              <div className="relative">
-                <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 text-cyan-400 mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <feature.icon className="text-3xl" />
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
-                <p className="text-gray-400 text-sm">{feature.desc}</p>
-              </div>
-            </motion.div>
-          ))}
+          <div className="flex justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
+              {features.slice(0, 3).map((feature, idx) => (
+                <motion.div
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  whileHover={{ y: -6, scale: 1.015 }}
+                  onMouseMove={handleMouseMove}
+                  className="tilt group relative bg-gradient-to-br from-[#1a1f3a]/80 to-[#0e1833]/80 backdrop-blur-sm border border-cyan-500/20 rounded-2xl p-6 hover:border-cyan-400/40 transition-all duration-300"
+                >
+                  <span aria-hidden className="interactive-spotlight rounded-2xl" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300" />
+                  <div className="relative h-full flex flex-col">
+                    <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 text-cyan-400 mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <feature.icon className="text-3xl" />
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
+                    <p className="text-gray-400 text-sm flex-1">{feature.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </motion.div>
 
         {/* Main Event Section - Placement Talks */}
@@ -274,27 +278,30 @@ export default function Events() {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {prizes.map((prize, idx) => (
-                <motion.div
-                  key={prize.title}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  whileHover={{ scale: 1.08, y: -8, rotate: 3 }}
-                  className="relative group"
-                >
-                  <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center hover:border-white/40 transition-all duration-300 overflow-hidden">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${prize.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-                    <div className={`relative inline-flex p-4 rounded-2xl bg-gradient-to-br ${prize.color} text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                      <prize.icon className="text-3xl" />
+            <div className="flex justify-center">
+              {/* Wider two-column layout for better visual balance */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 w-full max-w-3xl px-4">
+                {prizes.map((prize, idx) => (
+                  <motion.div
+                    key={prize.title}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: idx * 0.1 }}
+                    whileHover={{ scale: 1.08, y: -8, rotate: 3 }}
+                    className="relative group flex items-center justify-center px-2"
+                  >
+                    <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center hover:border-white/40 transition-all duration-300 overflow-hidden">
+                      <div className={`absolute inset-0 bg-gradient-to-br ${prize.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                      <div className={`relative inline-flex p-4 rounded-2xl bg-gradient-to-br ${prize.color} text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                        <prize.icon className="text-3xl" />
+                      </div>
+                      <h4 className="text-lg font-bold text-white mb-2">{prize.title}</h4>
+                      <p className="text-gray-300 text-sm">{prize.desc}</p>
                     </div>
-                    <h4 className="text-lg font-bold text-white mb-2">{prize.title}</h4>
-                    <p className="text-gray-300 text-sm">{prize.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
             <motion.div
