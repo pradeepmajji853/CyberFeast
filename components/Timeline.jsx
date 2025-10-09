@@ -4,8 +4,8 @@ import { FaClock } from 'react-icons/fa'
 
 const items = [
   { title: 'Opening & Placement Talk', desc: 'Kick-off and insights from Big 4 cybersecurity alumni.', time: '9:00 AM' },
-  { title: 'Cyber Forensics Workshop', desc: 'Hands-on session on digital investigation.', time: '10:30 AM' },
-  { title: 'Forensics Challenges', desc: 'CTF-style problems with prizes and certificates.', time: '2:00 PM' },
+  { title: 'Cyber Forensics Workshop', desc: 'Hands-on session on digital investigation.', time: '1:30 PM' },
+  { title: 'Forensics Challenges', desc: 'CTF-style problems with prizes and certificates.', time: '10:30 AM' },
   { title: 'Closing & Awards Ceremony', desc: 'Celebrating winners and closing remarks.', time: '5:00 PM' },
 ]
 

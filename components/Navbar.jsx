@@ -23,16 +23,13 @@ export default function Navbar() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.div whileHover={{ scale: 1.1, rotate: 5 }} transition={{ duration: 0.2 }}>
-            <Image src="https://picsum.photos/seed/ddc/40/40" alt="Digital Defense Club" width={40} height={40} className="rounded-md" />
-          </motion.div>
           <motion.div 
             whileHover={{ scale: 1.1, rotate: -5 }} 
             transition={{ duration: 0.2 }}
             className="relative"
           >
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/50 to-cyan-500/50 rounded-md blur opacity-75 group-hover:opacity-100 transition duration-300" />
-            <Image src="https://picsum.photos/seed/cyberfest/44/44" alt="CyberFest" width={44} height={44} className="relative rounded-md shadow-neon animate-glow" />
+            <Image src="/ddc_logo.jpg" alt="CyberFest" width={44} height={44} className="relative rounded-md shadow-neon animate-glow" />
           </motion.div>
           <span className="hidden md:block font-orbitron tracking-wider text-[#00B4FF] text-lg font-bold">CyberFest 2025</span>
         </motion.div>

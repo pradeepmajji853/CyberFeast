@@ -12,16 +12,13 @@ const bigFourCompanies = [
 
 const prizes = [
   { icon: FaMoneyBillWave, title: 'Cash Prizes', desc: 'Win exciting cash rewards', color: 'from-[#005ed1] to-[#00B4FF]' },
-  { icon: FaGoogle, title: 'Google Credits', desc: 'Cloud platform credits', color: 'from-[#0047AB] to-[#00AEEF]' },
-  { icon: FaCertificate, title: 'Gemini Certificates', desc: 'Official AI certifications', color: 'from-[#00336e] to-[#005ed1]' },
   { icon: FaGift, title: 'Goodies', desc: 'Exclusive swag & merchandise', color: 'from-[#0066ff] to-[#00B4FF]' },
 ]
 
 const features = [
   { icon: FaBriefcase, title: 'Placement Talks', desc: 'Career insights from Big 4 cybersecurity professionals' },
   { icon: FaMicroscope, title: 'Forensics Workshop', desc: 'Hands-on digital investigation training' },
-  { icon: FaTrophy, title: 'CTF Challenges', desc: 'Competitive forensics challenges with prizes' },
-  { icon: FaCheckCircle, title: '100% Free', desc: 'Everything free for all attendees!' },
+  { icon: FaTrophy, title: 'Forensics Challenges', desc: 'Competitive forensics challenges with prizes' },
 ]
 
 export default function Events() {
@@ -138,14 +135,6 @@ export default function Events() {
                         </motion.li>
                       ))}
                     </ul>
-                    <motion.button
-                      whileHover={{ scale: 1.05, x: 5 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="button-magnet inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/50 transition-all duration-300"
-                      onMouseMove={handleMouseMove}
-                    >
-                      Learn More
-                    </motion.button>
                   </motion.div>
                 </div>
 
@@ -225,14 +214,6 @@ export default function Events() {
                   </li>
                 ))}
               </ul>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                className="button-magnet inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold"
-                onMouseMove={handleMouseMove}
-              >
-                Details Coming Soon
-              </motion.button>
             </div>
           </motion.div>
 
@@ -264,14 +245,6 @@ export default function Events() {
                   </li>
                 ))}
               </ul>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                className="button-magnet inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold"
-                onMouseMove={handleMouseMove}
-              >
-                Details Coming Soon
-              </motion.button>
             </div>
           </motion.div>
         </div>
@@ -348,13 +321,13 @@ export default function Events() {
           className="mt-16 text-center"
         >
           <motion.a
-            href="/register"
+            href="https://forms.gle/DBoFP7k4ND4Nh2MUA"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             className="button-magnet inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-[#0047AB] to-[#00B4FF] text-white text-lg font-bold shadow-2xl shadow-blue-500/40 hover:shadow-3xl hover:shadow-blue-500/60 transition-all duration-300"
             onMouseMove={handleMouseMove}
           >
-             Free Registration
+             Register
           </motion.a>
           <p className="mt-4 text-gray-400">Limited seats available.</p>
         </motion.div>
