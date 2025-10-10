@@ -8,7 +8,7 @@ const poppins = Poppins({ subsets: ['latin'], weight: ['300','400','500','600','
 
 export const metadata = {
   title: 'CyberFest 2025 – Forensics Edition',
-  description: 'Digital Defense Club – Flagship Cybersecurity Event',
+  description: 'Digital Defense Club – Annual Cybersecurity Showcase',
 }
 
 export default function RootLayout({ children }) {

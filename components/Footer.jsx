@@ -4,17 +4,17 @@ import { motion } from 'framer-motion'
 
 export default function Footer() {
   return (
-    <footer className="mt-24 border-t border-white/10 bg-transparent">
+    <footer className="mt-20 md:mt-24 border-t border-white/10 bg-transparent">
       <div className="gradient-divider" />
 
       {/* Join Community CTA */}
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-14">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-14">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-2xl p-6 md:p-8 bg-gradient-to-r from-[#0b1020] via-[#0c1530] to-[#0b1020] group"
+          className="relative overflow-hidden rounded-2xl p-5 md:p-8 bg-gradient-to-r from-[#0b1020] via-[#0c1530] to-[#0b1020] group"
         >
           <span className="pointer-events-none absolute -inset-24 opacity-25 group-hover:opacity-40 transition-opacity duration-500" style={{ background: 'radial-gradient(600px 220px at 20% 10%, rgba(0,180,255,0.18), transparent), radial-gradient(600px 220px at 80% 90%, rgba(0,71,171,0.16), transparent)' }} />
           <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -49,8 +49,8 @@ export default function Footer() {
       </div>
 
       {/* Footer content grid */}
-      <div className="max-w-7xl mx-auto px-4 md:px-6 pb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 pb-8 md:pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
           {/* About */}
           <div>
             <h4 className="font-semibold text-[#00B4FF]">About Digital Defense Club</h4>
@@ -123,8 +123,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-gray-400">
-          <p>© CyberFest 2025 – All Rights Reserved</p>
+        <div className="mt-8 md:mt-10 pt-5 md:pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] md:text-xs text-gray-400">
+          <p>© ForensIQ 2025 – All Rights Reserved</p>
           <div className="flex items-center gap-4">
             <a href="#" className="hover:text-[#00B4FF]">Privacy</a>
             <a href="#" className="hover:text-[#00B4FF]">Terms</a>

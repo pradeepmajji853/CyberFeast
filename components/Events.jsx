@@ -31,7 +31,7 @@ export default function Events() {
     target.style.setProperty('--my', `${my}%`)
   }
   return (
-    <section id="events" className="py-16 md:py-24 relative overflow-hidden bg-gradient-to-b from-[#0B1020] via-[#0e1430] to-[#0B1020]">
+    <section id="events" className="py-14 md:py-24 relative overflow-hidden bg-gradient-to-b from-[#0B1020] via-[#0e1430] to-[#0B1020]">
       {/* Animated background elements */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-float" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" style={{ animationDelay: '2s' }} />
@@ -58,10 +58,10 @@ export default function Events() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-12 md:mb-16"
         >
           <div className="flex justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 w-full max-w-4xl">
               {features.slice(0, 3).map((feature, idx) => (
                 <motion.div
                   key={feature.title}
@@ -192,7 +192,7 @@ export default function Events() {
         </motion.div>
 
         {/* Forensics Workshop & Challenges */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-14 md:mb-16">
           {/* Workshop */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -282,8 +282,7 @@ export default function Events() {
             </div>
 
             <div className="flex justify-center">
-              {/* Wider two-column layout for better visual balance */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 w-full max-w-3xl px-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 w-full max-w-3xl px-2 md:px-4">
                 {prizes.map((prize, idx) => (
                   <motion.div
                     key={prize.title}
@@ -316,7 +315,7 @@ export default function Events() {
             >
               <div className="tilt inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600/30 to-cyan-600/30 border border-blue-500/40 text-cyan-300 text-lg font-semibold" onMouseMove={handleMouseMove}>
                 <span aria-hidden className="interactive-spotlight rounded-full" />
-                Certificates and goodies for all participants.
+                Participation certificates for all attendees.
               </div>
             </motion.div>
           </div>
@@ -328,7 +327,7 @@ export default function Events() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-16 text-center"
+          className="mt-12 md:mt-16 text-center"
         >
           <motion.a
             href="https://forms.gle/DBoFP7k4ND4Nh2MUA"
@@ -339,7 +338,7 @@ export default function Events() {
           >
              Register
           </motion.a>
-          <p className="mt-4 text-gray-400">Limited seats available.</p>
+          <p className="mt-3 md:mt-4 text-gray-400">Limited seats available.</p>
         </motion.div>
       </div>
     </section>

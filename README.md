@@ -1,6 +1,6 @@
 # CyberFest 2025 – Forensics Edition
 
-A modern, responsive Next.js 14 (App Router) landing site for the Digital Defense Club flagship event.
+A modern, responsive Next.js 14 (App Router) landing site for the Digital Defense Club annual cybersecurity showcase.
 
 ## Tech
 - Next.js 14
