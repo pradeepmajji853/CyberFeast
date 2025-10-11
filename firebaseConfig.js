@@ -1,18 +1,23 @@
-// Firebase config placeholders. Replace with your own keys from Firebase Console.
+// Firebase initialized with provided credentials.
 import { initializeApp, getApps } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
+import { getAnalytics } from 'firebase/analytics'
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || 'YOUR_API_KEY',
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || 'YOUR_AUTH_DOMAIN',
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'YOUR_PROJECT_ID',
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || 'YOUR_STORAGE_BUCKET',
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || 'YOUR_MESSAGING_SENDER_ID',
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || 'YOUR_APP_ID'
+  apiKey: 'AIzaSyDQwYetArY9ymAhvvTMRlQNlRl66WMA5A0',
+  authDomain: 'forensiq-bc370.firebaseapp.com',
+  projectId: 'forensiq-bc370',
+  storageBucket: 'forensiq-bc370.firebasestorage.app',
+  messagingSenderId: '803165638717',
+  appId: '1:803165638717:web:9a90a62b6379cb5c05da54',
+  measurementId: 'G-XV91BQ5VC4',
 }
-
-const isConfigured = !Object.values(firebaseConfig).some(v => String(v).startsWith('YOUR_'))
 
 const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig)
 export const db = getFirestore(app)
-export { isConfigured }
+
+// Initialize Analytics only in the browser to avoid SSR errors
+export const analytics = typeof window !== 'undefined' ? getAnalytics(app) : null
+
+export const isConfigured = true
