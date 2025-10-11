@@ -3,7 +3,6 @@ import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import ParticleEffect from './ParticleEffect'
 import GradientBlinds from './GradientBlinds'
-import { useSearchParams } from 'next/navigation'
 
 function TypeLine() {
   const phrases = [
@@ -53,9 +52,16 @@ export default function Hero() {
   const rotateX = useTransform(mouseY, [0, 1], [6, -6])
   const rotateY = useTransform(mouseX, [0, 1], [-6, 6])
 
-  const searchParams = useSearchParams()
-  const shaderParam = (searchParams?.get('shader') || '').toLowerCase()
-  const shaderVariant = shaderParam === 'reactbits' ? 'reactbits' : 'blinds'
+  // local shader toggle state, read from URL after mount
+  const [shaderVariant, setShaderVariant] = useState('blinds')
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const params = new URLSearchParams(window.location.search)
+    const shaderParam = (params.get('shader') || '').toLowerCase()
+    if (shaderParam === 'reactbits') setShaderVariant('reactbits')
+    else setShaderVariant('blinds')
+  }, [])
 
   useEffect(() => {
     const onMove = (e) => {
