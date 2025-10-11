@@ -3,6 +3,7 @@ import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import ParticleEffect from './ParticleEffect'
 import GradientBlinds from './GradientBlinds'
+import FlagRegisterModal from './FlagRegisterModal'
 
 function TypeLine() {
   const phrases = [
@@ -54,6 +55,7 @@ export default function Hero() {
 
   // local shader toggle state, read from URL after mount
   const [shaderVariant, setShaderVariant] = useState('blinds')
+  const [modalOpen, setModalOpen] = useState(false)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -193,12 +195,11 @@ export default function Hero() {
 
         <div className="relative inline-block mt-6 md:mt-10 w-full sm:w-auto">
           <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-[rgba(0,71,171,0.6)] to-[rgba(0,180,255,0.6)] blur-xl animate-pulse" />
-          <motion.a
-            href="https://forms.gle/DBoFP7k4ND4Nh2MUA"
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.button
+            type="button"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
+            onClick={() => setModalOpen(true)}
             className="relative inline-block w-full sm:w-auto px-7 md:px-8 py-3.5 md:py-4 rounded-lg bg-gradient-to-r from-[#0047AB] to-[#00B4FF] text-white font-bold text-base md:text-lg shadow-neon transition-all duration-300"
           >
             Register Now
@@ -219,9 +220,11 @@ export default function Hero() {
                 repeat: Infinity,
               }}
             />
-          </motion.a>
+          </motion.button>
         </div>
       </div>
+
+      <FlagRegisterModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </section>
   )
 }
