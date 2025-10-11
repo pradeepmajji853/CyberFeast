@@ -42,17 +42,17 @@ const Part = ({ title, time, items, note, children, defaultOpen = true }) => {
 
 export default function Program() {
   return (
-    <section id="program" className="py-16 md:py-24">
+    <section id="program" className="py-14 md:py-24">
       <div className="max-w-6xl mx-auto px-4 md:px-6">
         <h2 className="section-title">Program</h2>
-        <div className="mt-2 text-gray-300 flex flex-wrap items-center gap-4">
+        <div className="mt-2 text-gray-300 flex flex-wrap items-center gap-3 md:gap-4 text-sm md:text-base">
           <span className="inline-flex items-center gap-2"><FaChalkboardTeacher className="text-[#00B4FF]" /> Organized by: <strong className="ml-1">Digital Defense Club</strong></span>
           <span className="inline-flex items-center gap-2"><FaMapMarkerAlt className="text-[#00B4FF]" /> Venue: <em className="ml-1">[Venue Name, College]</em></span>
           <span className="inline-flex items-center gap-2"><FaCalendarAlt className="text-[#00B4FF]" /> Dates: <em className="ml-1">[Insert Dates]</em></span>
         </div>
 
         {/* Day 1 */}
-        <div className="mt-8 space-y-5">
+        <div className="mt-6 md:mt-8 space-y-4 md:space-y-5">
           <h3 className="text-xl md:text-2xl font-semibold text-[#00B4FF]">Day 1: Awareness & Training</h3>
 
           <Part
@@ -117,8 +117,8 @@ export default function Program() {
         </div>
 
         {/* Day 2 */}
-        <div className="mt-10 space-y-5">
-          <h3 className="text-xl md:text-2xl font-semibold text-[#00B4FF]">Day 2: Flagship Cyber Security Event</h3>
+        <div className="mt-8 md:mt-10 space-y-4 md:space-y-5">
+          <h3 className="text-xl md:text-2xl font-semibold text-[#00B4FF]">Day 2: Cyber Security Showcase</h3>
 
           <Part
             title="Part 3: Challenges and Example Questions"
@@ -163,8 +163,8 @@ export default function Program() {
         </div>
 
         {/* Compact table summary */}
-        <div className="mt-10 rounded-xl bg-white/5 p-4 border border-white/10 overflow-x-auto">
-          <table className="min-w-[640px] w-full text-sm">
+        <div className="mt-8 md:mt-10 rounded-xl bg-white/5 p-3 md:p-4 border border-white/10 overflow-x-auto">
+          <table className="min-w-[640px] w-full text-xs md:text-sm">
             <thead className="text-gray-300">
               <tr className="text-left">
                 <th className="py-2 pr-4">Day</th>
@@ -175,7 +175,7 @@ export default function Program() {
             <tbody className="text-gray-200/90">
               <tr><td className="py-2 pr-4">Day 1</td><td className="py-2 pr-4">9:30 AM – 12:30 PM</td><td className="py-2 pr-4">Career Insights & Alumni Interaction</td></tr>
               <tr><td className="py-2 pr-4">Day 1</td><td className="py-2 pr-4">2:00 PM – 4:00 PM</td><td className="py-2 pr-4">Hands-on Forensics Lab Session</td></tr>
-              <tr><td className="py-2 pr-4">Day 2</td><td className="py-2 pr-4">9:30 AM – 12:30 PM</td><td className="py-2 pr-4">Flagship Forensic Challenges</td></tr>
+              <tr><td className="py-2 pr-4">Day 2</td><td className="py-2 pr-4">9:30 AM – 12:30 PM</td><td className="py-2 pr-4">Showcase Forensic Challenges</td></tr>
               <tr><td className="py-2 pr-4">Day 2</td><td className="py-2 pr-4">1:30 PM – 3:00 PM</td><td className="py-2 pr-4">Fun Activities & Valedictory</td></tr>
             </tbody>
           </table>

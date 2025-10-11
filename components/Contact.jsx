@@ -4,7 +4,7 @@ import { FiMail, FiPhone } from 'react-icons/fi'
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-16 md:py-24 relative overflow-hidden bg-gradient-to-br from-[#001529] via-[#003366] to-[#001f3f]">
+    <section id="contact" className="py-14 md:py-24 relative overflow-hidden bg-gradient-to-br from-[#001529] via-[#003366] to-[#001f3f]">
       {/* Background decorative elements */}
       <div className="absolute top-10 right-10 w-72 h-72 bg-cyan-400/20 rounded-full blur-3xl animate-float" />
       <div className="absolute bottom-10 left-10 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl" />
@@ -27,7 +27,7 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="mt-8 rounded-xl bg-gradient-to-br from-[#1a1f3a]/80 to-[#0e1833]/80 backdrop-blur-sm border border-cyan-500/20 shadow-lg shadow-cobalt-500/5 overflow-hidden"
         >
-          <div className="p-6 md:p-8 grid gap-6 md:grid-cols-2">
+          <div className="p-4 md:p-8 grid gap-6 md:grid-cols-2">
             <motion.a 
               href="mailto:ccc@cbit.ac.in" 
               whileHover={{ scale: 1.02, y: -2 }}

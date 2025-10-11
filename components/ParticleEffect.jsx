@@ -93,7 +93,7 @@ export default function ParticleEffect() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 pointer-events-none opacity-40"
-      style={{ zIndex: 1 }}
+      style={{ zIndex: 20 }}
     />
   )
 }
