@@ -10,8 +10,21 @@ export default function ParticleEffect() {
     if (!canvas) return
 
     const ctx = canvas.getContext('2d')
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+
+    const resizeCanvas = () => {
+      const parent = canvas.parentElement
+      const rect = parent ? parent.getBoundingClientRect() : { width: window.innerWidth, height: window.innerHeight }
+      const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1
+      // Set CSS size
+      canvas.style.width = rect.width + 'px'
+      canvas.style.height = rect.height + 'px'
+      // Set internal resolution
+      canvas.width = Math.max(1, Math.floor(rect.width * dpr))
+      canvas.height = Math.max(1, Math.floor(rect.height * dpr))
+      // Use device pixel coordinates (no extra scale) for simplicity
+    }
+
+    resizeCanvas()
 
     const particles = []
     const particleCount = 50
@@ -77,22 +90,20 @@ export default function ParticleEffect() {
 
     animate()
 
-    const handleResize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-
+    const handleResize = () => resizeCanvas()
     window.addEventListener('resize', handleResize)
+    window.addEventListener('orientationchange', handleResize)
 
     return () => {
       window.removeEventListener('resize', handleResize)
+      window.removeEventListener('orientationchange', handleResize)
     }
   }, [])
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none opacity-40"
+      className="absolute inset-0 pointer-events-none opacity-40 w-full h-full"
       style={{ zIndex: 20 }}
     />
   )

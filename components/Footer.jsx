@@ -48,7 +48,7 @@ export default function Footer() {
                 <a href="mailto:ccc@cbit.ac.in" className="hover:text-[#00B4FF]">ccc@cbit.ac.in</a>
               </li>
               <li>
-                <a href="tel:+8184889557" className="hover:text-[#00B4FF]">+8184889557</a>
+                <a href="tel:+918184889557" className="hover:text-[#00B4FF]">+91 8184889557</a>
               </li>
               <li>Digital Defense Club, CBIT</li>
             </ul>
@@ -59,9 +59,9 @@ export default function Footer() {
             <h4 className="font-semibold text-[#00B4FF]">Follow Us</h4>
             <div className="mt-3 flex flex-wrap items-center gap-2 md:gap-3">
               {[
-                { icon: FaLinkedin, href: LINKEDIN_URL, label: 'LinkedIn' },
-                { icon: FaWhatsapp, href: WHATSAPP_URL, label: 'WhatsApp Community' },
-                { icon: FaInstagram, href: INSTAGRAM_URL, label: 'Instagram' },
+                { icon: FaLinkedin, href: 'https://www.linkedin.com/company/digital-defence-club/', label: 'LinkedIn' },
+                { icon: FaWhatsapp, href: 'https://chat.whatsapp.com/EHiWQmUfjuL94zgoNAt7DW?mode=ems_wa_t', label: 'WhatsApp Community' },
+                { icon: FaInstagram, href: 'https://www.instagram.com/ddc_cbit/', label: 'Instagram' },
               ].map((social) => {
                 const Icon = social.icon
                 return (

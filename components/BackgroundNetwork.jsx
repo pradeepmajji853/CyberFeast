@@ -46,12 +46,15 @@ export default function BackgroundNetwork() {
     }
 
     function resize() {
-      width = window.innerWidth
-      height = window.innerHeight
+      const vw = (window.visualViewport && window.visualViewport.width) || window.innerWidth
+      const vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight
+      width = Math.max(1, Math.floor(vw))
+      height = Math.max(1, Math.floor(vh))
       canvas.width = Math.floor(width * dpr)
       canvas.height = Math.floor(height * dpr)
-      canvas.style.width = width + 'px'
-      canvas.style.height = height + 'px'
+      // use CSS 100% to avoid pixel rounding overflow
+      canvas.style.width = '100%'
+      canvas.style.height = '100%'
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       initNodes()
     }
@@ -148,6 +151,7 @@ export default function BackgroundNetwork() {
     }
 
     window.addEventListener('resize', resize)
+    window.addEventListener('orientationchange', resize)
     window.addEventListener('mousemove', onMouseMove)
     window.addEventListener('mouseleave', onMouseLeave)
     document.addEventListener('visibilitychange', onVisibility)
@@ -158,6 +162,7 @@ export default function BackgroundNetwork() {
     return () => {
       cancelAnimationFrame(rafRef.current)
       window.removeEventListener('resize', resize)
+      window.removeEventListener('orientationchange', resize)
       window.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('mouseleave', onMouseLeave)
       document.removeEventListener('visibilitychange', onVisibility)

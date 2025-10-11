@@ -26,7 +26,7 @@ const prizes = [
 export default function Events() {
   const [open, setOpen] = useState(false)
   return (
-    <section id="events" className="py-12 md:py-24 relative overflow-hidden bg-[#0B1224]">
+    <section id="events" className="scroll-mt-24 md:scroll-mt-28 py-12 md:py-24 relative overflow-hidden bg-[#0B1224]">
       {/* Subtle static background accents */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         {/* soft radial glow from top-center */}
@@ -116,15 +116,15 @@ export default function Events() {
               <div>
                 <div className="grid grid-cols-2 gap-3 md:gap-4">
                   {bigFourCompanies.map((c) => (
-                    <div key={c.name} className="relative aspect-[16/10] rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 md:p-6">
-                      <Image 
-                        src={`/logos/${c.file}`} 
-                        alt={c.name} 
-                        width={160} 
-                        height={80} 
+                    <div key={c.name} className="relative aspect-[16/10] rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm">
+                      {/* Make image fill the uniform card so all logos have the same visual size */}
+                      <Image
+                        src={`/logos/${c.file}`}
+                        alt={c.name}
+                        fill
                         loading="lazy"
                         sizes="(max-width: 640px) 40vw, (max-width: 1024px) 20vw, 160px"
-                        className="object-contain max-w-full h-auto" 
+                        className="object-contain p-3 sm:p-4 md:p-6"
                       />
                     </div>
                   ))}

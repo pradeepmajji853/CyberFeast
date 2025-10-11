@@ -77,7 +77,7 @@ export default function Hero() {
   }, [mouseX, mouseY])
 
   return (
-    <section id="home" className="min-h-screen min-h-[100svh] md:min-h-screen pt-24 md:pt-32 pb-6 md:pb-10 relative overflow-hidden flex items-center">
+    <section id="home" className="scroll-mt-24 md:scroll-mt-28 full-viewport min-h-screen min-h-[100svh] md:min-h-screen pt-24 md:pt-32 pb-6 md:pb-10 relative overflow-hidden overflow-x-hidden flex items-center">
       {/* Existing particles (kept above background) */}
       <ParticleEffect />
 

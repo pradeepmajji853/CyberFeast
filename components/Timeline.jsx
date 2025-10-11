@@ -52,7 +52,7 @@ function TextBlock({ title, time, desc, align = 'left', tone = 'dark' }) {
 
 export default function Timeline() {
   return (
-    <section id="timeline" className="py-12 md:py-24 relative bg-gradient-to-br from-[#091025] via-[#0f1734] to-[#091025]">
+    <section id="timeline" className="scroll-mt-24 md:scroll-mt-28 py-12 md:py-24 relative bg-gradient-to-br from-[#091025] via-[#0f1734] to-[#091025]">
       {/* background glows */}
       <div className="pointer-events-none absolute -top-24 right-10 w-56 md:w-72 h-56 md:h-72 bg-cyan-500/12 rounded-full blur-3xl" />
       <div className="pointer-events-none absolute -bottom-20 left-10 w-52 md:w-64 h-52 md:h-64 bg-blue-500/12 rounded-full blur-3xl" />

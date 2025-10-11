@@ -42,7 +42,7 @@ const Part = ({ title, time, items, note, children, defaultOpen = true }) => {
 
 export default function Program() {
   return (
-    <section id="program" className="py-14 md:py-24">
+    <section id="program" className="scroll-mt-24 md:scroll-mt-28 py-14 md:py-24">
       <div className="max-w-6xl mx-auto px-4 md:px-6">
         <h2 className="section-title">Program</h2>
         <div className="mt-2 text-gray-300 flex flex-wrap items-center gap-3 md:gap-4 text-sm md:text-base">
@@ -74,8 +74,8 @@ export default function Program() {
                 { name: 'EY', file: 'ey.png' },
                 { name: 'PwC', file: 'pwc.png' },
               ].map(({ name, file }) => (
-                <div key={name} className="relative aspect-[16/9] rounded-lg bg-black/20 border border-white/10">
-                  <Image src={`/logos/${file}`} alt={`${name} logo`} fill className="object-contain p-3" />
+                <div key={name} className="relative aspect-[16/10] rounded-lg bg-black/20 border border-white/10">
+                  <Image src={`/logos/${file}`} alt={`${name} logo`} fill className="object-contain p-3 sm:p-4" />
                 </div>
               ))}
             </div>

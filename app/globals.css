@@ -9,6 +9,7 @@
 
 html, body, :root {
   height: 100%;
+  overflow-x: hidden; /* prevent stray horizontal scroll */
 }
 
 body {
@@ -251,3 +252,12 @@ html {
   overflow-wrap: anywhere;
   word-break: break-word;
 }
+
+/* Avoid 100vw scrollbar compensation issues */
+.full-viewport {
+  width: 100svw;
+  min-height: 100svh;
+}
+
+/* Ensure fixed pseudo elements don’t overflow */
+body, body::before { max-width: 100%; }

@@ -4,7 +4,7 @@ import { FaShieldAlt, FaUsers, FaMicroscope, FaBriefcase, FaTrophy } from 'react
 
 export default function About() {
   return (
-    <section id="about" className="py-10 md:py-24 relative overflow-hidden bg-gradient-to-b from-[#00336e] via-[#0047AB] to-[#005ed1] text-gray-100">
+    <section id="about" className="scroll-mt-24 md:scroll-mt-28 py-10 md:py-24 relative overflow-hidden bg-gradient-to-b from-[#00336e] via-[#0047AB] to-[#005ed1] text-gray-100">
       {/* Background decorative elements */}
       <div className="absolute top-10 right-10 w-40 md:w-64 lg:w-72 h-40 md:h-64 lg:h-72 bg-cyan-400/20 rounded-full blur-3xl" />
       <div className="absolute bottom-10 left-10 w-36 md:w-56 lg:w-64 h-36 md:h-56 lg:h-64 bg-blue-300/20 rounded-full blur-3xl" />

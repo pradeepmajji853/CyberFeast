@@ -4,7 +4,7 @@ import { FiMail, FiPhone } from 'react-icons/fi'
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-14 md:py-24 relative overflow-hidden bg-gradient-to-br from-[#001529] via-[#003366] to-[#001f3f]">
+    <section id="contact" className="scroll-mt-24 md:scroll-mt-28 py-14 md:py-24 relative overflow-hidden bg-gradient-to-br from-[#001529] via-[#003366] to-[#001f3f]">
       {/* Background decorative elements */}
       <div className="absolute top-10 right-10 w-72 h-72 bg-cyan-400/20 rounded-full blur-3xl animate-float" />
       <div className="absolute bottom-10 left-10 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl" />
@@ -45,7 +45,7 @@ export default function Contact() {
             </motion.a>
 
             <motion.a 
-              href="tel:+8184889557" 
+              href="tel:+918184889557" 
               whileHover={{ scale: 1.02, y: -2 }}
               transition={{ duration: 0.2 }}
               className="group flex items-center gap-4 rounded-lg bg-[#0a0e27]/70 border border-cyan-500/30 p-4 hover:bg-[#0a0e27] hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 relative overflow-hidden"
@@ -56,7 +56,7 @@ export default function Contact() {
               </span>
               <div className="relative">
                 <p className="text-sm text-gray-400">Phone</p>
-                <p className="font-medium text-gray-200 group-hover:text-cyan-400 transition-colors">+8184889557</p>
+                <p className="font-medium text-gray-200 group-hover:text-cyan-400 transition-colors">+91 8184889557</p>
               </div>
             </motion.a>
           </div>
