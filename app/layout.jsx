@@ -8,8 +8,15 @@ const orbitron = Orbitron({ subsets: ['latin'], variable: '--font-orbitron' })
 const poppins = Poppins({ subsets: ['latin'], weight: ['300','400','500','600','700'], variable: '--font-poppins' })
 
 export const metadata = {
-  title: 'CyberFest 2025 – Forensics Edition',
+  title: {
+    default: 'ForensIQ 2025',
+    template: '%s | ForensIQ',
+  },
   description: 'Digital Defense Club – Annual Cybersecurity Showcase',
+  icons: {
+    icon: [{ url: '/logos/ddc_logo.jpg', type: 'image/jpeg' }],
+    apple: [{ url: '/logos/ddc_logo.jpg', type: 'image/jpeg' }],
+  },
 }
 
 // Ensure proper responsive scaling on mobile
