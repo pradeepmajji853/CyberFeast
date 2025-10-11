@@ -1,5 +1,6 @@
 "use client"
 import { FaRocket, FaFlagCheckered, FaTrophy, FaTools } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 
 const items = [
   {
@@ -78,6 +79,7 @@ export default function Timeline() {
           <div className="grid grid-cols-1 md:grid-cols-[1fr_56px_1fr] gap-y-8 md:gap-y-14">
             {items.map((it, i) => {
               const left = i % 2 === 1
+              const isDayBoundary = i === 0 || items[i - 1].day !== it.day
               return (
                 <div key={it.title + i} className="contents">
                   {/* Left text */}
@@ -104,12 +106,38 @@ export default function Timeline() {
                   </div>
 
                   {/* Mobile stacked (with left guide and dot) */}
-                  <div className="md:hidden relative pl-12 mt-2">
-                    <div className="absolute left-5 top-2 w-2.5 h-2.5 rounded-full bg-gradient-to-b from-[#0047AB] to-[#00B4FF] ring-2 ring-cyan-400/30" />
+                  <motion.div
+                    className="md:hidden relative pl-12 mt-2"
+                    initial={{ x: 40, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+                  >
+                    {/* Day label on column at the first item of each day */}
+                    {isDayBoundary && (
+                      <motion.div
+                        initial={{ y: -6, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="absolute -left-1 -top-3 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/90 text-[#0047AB] shadow"
+                      >
+                        {it.day}
+                      </motion.div>
+                    )}
+
+                    {/* dot on the guide line */}
+                    <motion.div
+                      className="absolute left-5 top-2 w-2.5 h-2.5 rounded-full bg-gradient-to-b from-[#0047AB] to-[#00B4FF] ring-2 ring-cyan-400/30"
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                    />
+
                     <p className="text-[11px] text-cyan-300/90 font-semibold">{it.time} • {it.day}</p>
                     <p className="text-white font-semibold text-sm mt-0.5">{it.title}</p>
                     <p className="text-gray-300 text-xs mt-0.5">{it.desc}</p>
-                  </div>
+                  </motion.div>
                 </div>
               )
             })}
