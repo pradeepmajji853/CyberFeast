@@ -245,7 +245,9 @@ html {
 
 /* Responsive helpers */
 @media (max-width: 640px) {
-  body::before { background-size: 40px 40px, 40px 40px; }
+  body::before { background-size: 44px 44px, 44px 44px; opacity: 0.85; }
+  .beam-bg::before { opacity: 0.6; filter: blur(1.5px); }
+  .shadow-neon { box-shadow: 0 0 16px rgba(0,180,255,0.25) !important; }
 }
 
 .wrap-anywhere {
@@ -261,3 +263,9 @@ html {
 
 /* Ensure fixed pseudo elements don’t overflow */
 body, body::before { max-width: 100%; }
+
+/* Respect reduced-motion: pause non-essential animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .animate-float, .animate-glow, .animate-shimmer { animation: none !important; }
+}
