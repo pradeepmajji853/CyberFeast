@@ -107,32 +107,16 @@ export default function Timeline() {
 
                   {/* Mobile stacked (with left guide and dot) */}
                   <motion.div
-                    className="md:hidden relative pl-12 mt-2"
+                    className="md:hidden relative pl-16 mt-2"
                     initial={{ x: 40, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     viewport={{ once: true, amount: 0.4 }}
                     transition={{ type: 'spring', stiffness: 260, damping: 24 }}
                   >
-                    {/* Day label on column at the first item of each day */}
-                    {isDayBoundary && (
-                      <motion.div
-                        initial={{ y: -6, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="absolute -left-1 -top-3 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/90 text-[#0047AB] shadow"
-                      >
-                        {it.day}
-                      </motion.div>
-                    )}
-
-                    {/* dot on the guide line */}
-                    <motion.div
-                      className="absolute left-5 top-2 w-2.5 h-2.5 rounded-full bg-gradient-to-b from-[#0047AB] to-[#00B4FF] ring-2 ring-cyan-400/30"
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                    />
+                    {/* Day circle (mobile) — shown for every item */}
+                    <div className="absolute left-1 top-1 w-10 h-10 rounded-full bg-white shadow-md ring-2 ring-cyan-400/25 flex items-center justify-center">
+                      <span className="font-bold text-[#0047AB] text-[10px]">{it.day}</span>
+                    </div>
 
                     <p className="text-[11px] text-cyan-300/90 font-semibold">{it.time} • {it.day}</p>
                     <p className="text-white font-semibold text-sm mt-0.5">{it.title}</p>
