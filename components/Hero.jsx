@@ -195,11 +195,12 @@ export default function Hero() {
 
         <div className="relative inline-block mt-6 md:mt-10 w-full sm:w-auto">
           <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-[rgba(0,71,171,0.6)] to-[rgba(0,180,255,0.6)] blur-xl animate-pulse" />
-          <motion.button
-            type="button"
+          <motion.a
+            href="https://forms.gle/DBoFP7k4ND4Nh2MUA"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => setModalOpen(true)}
             className="relative inline-block w-full sm:w-auto px-7 md:px-8 py-3.5 md:py-4 rounded-lg bg-gradient-to-r from-[#0047AB] to-[#00B4FF] text-white font-bold text-base md:text-lg shadow-neon transition-all duration-300"
           >
             Register Now
@@ -220,7 +221,7 @@ export default function Hero() {
                 repeat: Infinity,
               }}
             />
-          </motion.button>
+          </motion.a>
         </div>
       </div>
 
