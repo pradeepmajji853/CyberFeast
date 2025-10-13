@@ -136,7 +136,7 @@ export default function Timeline() {
         <p className="mt-2 text-gray-300 text-sm md:text-base">
           {'All timings are tentative and may shift slightly.'}
           {/* zero-width embedded flag; copy-paste the rendered text and inspect code points */}
-          {'\u200b\u200c\u200d\u2060\ufeffforensiq{zwc_timeline_cipher}'}
+          
         </p>
       </div>
     </section>
