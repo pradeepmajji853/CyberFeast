@@ -31,10 +31,17 @@ export default function Footer() {
                 {label: 'Events', href: '#events'},
                 {label: 'Timeline', href: '#timeline'},
                 {label: 'Contact', href: '#contact'},
-                {label: 'Register', href: '/register'},
+                {label: 'Submit Flags', href: '#home'},
               ].map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="hover:text-[#00B4FF] transition-colors">{l.label}</a>
+                  <a href={l.href} className="hover:text-[#00B4FF] transition-colors" onClick={(e) => {
+                    if (l.label === 'Submit Flags') {
+                      e.preventDefault()
+                      sessionStorage.setItem('openFlagModal', '1')
+                      const el = document.querySelector('#home')
+                      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                    }
+                  }}>{l.label}</a>
                 </li>
               ))}
             </ul>

@@ -71,6 +71,29 @@ export default function Navbar() {
     { id: 'contact', label: 'Contact', href: '#contact', icon: FaEnvelope },
   ]
 
+  useEffect(() => {
+    // DevTools easter egg + helper
+    if (typeof window === 'undefined') return
+    if (window.__forensiqLogged) return
+    window.__forensiqLogged = true
+    try {
+      // Flag 1: DevTools console banner
+      // forensiq{devtools_console_signal}
+      // Hint: type window.forensiq()
+      // eslint-disable-next-line no-console
+      console.log('%cForensIQ tip: Inspecting is a skill.','color:#00B4FF;font-weight:bold')
+      // eslint-disable-next-line no-console
+      console.log('flag:', 'forensiq{devtools_console_signal}')
+
+      // Flag 2: window API
+      window.forensiq = () => {
+        // eslint-disable-next-line no-console
+        console.log('flag:', 'forensiq{window_forensiq_easteregg}')
+        return 'Check network headers and well-known paths next.'
+      }
+    } catch {}
+  }, [])
+
   return (
     <header ref={headerRef} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-dark-bg/90 backdrop-blur-md shadow-lg shadow-blue-500/10' : 'bg-transparent'}`}>
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-3">
@@ -168,11 +191,22 @@ export default function Navbar() {
             </nav>
             <div className="px-4 pb-6">
               <a
-                href="/register"
+                href="#home?submit=1"
                 className="inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 text-base font-semibold text-white bg-gradient-to-r from-[#0047AB] to-[#00B4FF] shadow-neon"
-                onClick={() => setMobileOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault()
+                  const href = '#home'
+                  const el = document.querySelector(href)
+                  if (el) {
+                    // set a transient flag to open modal after scroll
+                    sessionStorage.setItem('openFlagModal', '1')
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                    if (history?.replaceState) history.replaceState(null, '', href)
+                  }
+                  setMobileOpen(false)
+                }}
               >
-                <FaPen /> Register
+                <FaPen /> Submit Flags
               </a>
             </div>
           </div>

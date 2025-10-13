@@ -155,7 +155,7 @@ export default function FlagRegisterModal({ open, onClose }) {
                   {loading && (
                     <span className="h-4 w-4 rounded-full border-2 border-white/40 border-t-white animate-spin" />
                   )}
-                  {loading ? 'Submitting...' : 'Submit'}
+                  {loading ? 'Submitting...' : 'Submit flags now'}
                 </motion.button>
 
                 <p className="text-[11px] text-gray-400">

@@ -12,7 +12,18 @@ const nextConfig = {
         hostname: 'picsum.photos',
       }
     ]
-  }
+  },
+  async headers() {
+    return [
+      {
+        source: '/register',
+        headers: [
+          // base64 -> forensiq{header_infiltrated}
+          { key: 'X-ForensIQ-Shadow', value: 'Zm9yZW5zaXF7aGVhZGVyX2luZmlsdHJhdGVkfQ==' },
+        ],
+      },
+    ]
+  },
 };
 
 export default nextConfig;

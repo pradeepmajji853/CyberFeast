@@ -200,14 +200,13 @@ export default function Events() {
 
         {/* CTA */}
         <div className="text-center">
-          <a
-            href="https://forms.gle/DBoFP7k4ND4Nh2MUA"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
             className="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-[#0047AB] to-[#00B4FF] text-white text-base md:text-lg font-bold shadow-2xl shadow-blue-500/30 hover:shadow-blue-500/50 transition-shadow w-full sm:w-auto justify-center"
           >
-            Register
-          </a>
+            Submit flags now
+          </button>
           <p className="mt-3 text-gray-400 text-sm md:text-base">Limited seats available.</p>
         </div>
       </div>

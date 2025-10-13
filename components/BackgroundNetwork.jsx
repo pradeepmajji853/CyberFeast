@@ -9,6 +9,8 @@ const palette = {
   white: 'rgba(255, 255, 255, 1)',
 }
 
+// Homoglyph hint: The word “𝖋𝗈𝗋𝖾𝗇𝗌𝗂𝗾” uses mixed Unicode forms; NFKC normalize -> forensiq{unicode_homoglyph}
+
 export default function BackgroundNetwork() {
   const canvasRef = useRef(null)
   const rafRef = useRef(0)

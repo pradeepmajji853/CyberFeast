@@ -1,0 +1,2 @@
+This file intentionally left simple. The actual EXIF is not pre-written to keep repo clean.
+When hosting, you may embed Comment: forensiq{exif_comment_found} into /logos/ddc_logo.jpg using exiftool.

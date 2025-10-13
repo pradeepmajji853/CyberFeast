@@ -2,6 +2,9 @@
 import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
+// Hint: Curious about headers? Check network responses. Psst: not all clues are in headers.
+// Hidden token (comment-only): forensiq{network_reader}
+
 export default function ParticleEffect() {
   const canvasRef = useRef(null)
 
@@ -92,7 +95,7 @@ export default function ParticleEffect() {
             ctx.lineWidth = 0.5
             ctx.beginPath()
             ctx.moveTo(p.x, p.y)
-            ctx.lineTo(particles[j].x, p.y)
+            ctx.lineTo(particles[j].x, particles[j].y)
             ctx.stroke()
             drawn++
           }

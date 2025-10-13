@@ -2,6 +2,10 @@
 import { useEffect, useRef } from 'react'
 import { Renderer, Program, Mesh, Triangle } from 'ogl'
 
+// Hidden payload (pako inflate):
+// H4sIAAAAAAAAA6tWKkktLlGyUlDSUcrPyCxWAKqQn5xYlJ+Xk5qTmVgAAJkqg0wXAAAA
+// Decode: atob -> gunzip -> text => forensiq{blinds_payload}
+
 const MAX_COLORS = 8
 const hexToRGB = (hex) => {
   const c = hex.replace('#', '').padEnd(6, '0')
