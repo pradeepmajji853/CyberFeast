@@ -233,3 +233,92 @@ html {
   filter: blur(8px);
 }
 .button-magnet:hover::after { opacity: 1; }
+
+/* Challenges specific styles */
+.challenge-modal {
+  backdrop-filter: blur(12px);
+}
+
+.challenge-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(26, 31, 58, 0.8), rgba(14, 24, 51, 0.8));
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  transition: all 0.3s ease;
+}
+
+.challenge-card:hover {
+  border-color: rgba(34, 211, 238, 0.5);
+  box-shadow: 0 8px 32px rgba(34, 211, 238, 0.15);
+  transform: translateY(-2px);
+}
+
+.challenge-card.active {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.15), rgba(59, 130, 246, 0.1));
+  border-color: rgba(34, 211, 238, 0.6);
+}
+
+.challenge-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  transition: all 0.3s ease;
+}
+
+.challenge-input:focus {
+  border-color: rgba(34, 211, 238, 0.6);
+  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.challenge-submit {
+  background: linear-gradient(135deg, #3B82F6, #22D3EE);
+  transition: all 0.3s ease;
+}
+
+.challenge-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.challenge-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.difficulty-easy {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22C55E;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.difficulty-medium {
+  background: rgba(251, 191, 36, 0.2);
+  color: #FBBF24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.difficulty-hard {
+  background: rgba(239, 68, 68, 0.2);
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Scrollbar styling for challenge lists */
+.challenge-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.challenge-sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.challenge-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.3);
+  border-radius: 3px;
+}
+
+.challenge-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.5);
+}

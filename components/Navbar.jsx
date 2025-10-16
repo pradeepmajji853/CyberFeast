@@ -3,9 +3,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import Challenges from './Challenges'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const [showChallenges, setShowChallenges] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
@@ -59,6 +61,28 @@ export default function Navbar() {
               </motion.a>
             </motion.li>
           ))}
+          
+          {/* Challenges Link */}
+          <motion.li
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.4 }}
+          >
+            <motion.button
+              onClick={() => setShowChallenges(true)}
+              className="relative hover:text-[#00B4FF] transition-colors font-medium"
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.2 }}
+            >
+              Challenges
+              <motion.span 
+                className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500"
+                initial={{ width: 0 }}
+                whileHover={{ width: '100%' }}
+                transition={{ duration: 0.2 }}
+              />
+            </motion.button>
+          </motion.li>
           {/* Register removed from desktop navbar */}
         </ul>
 
@@ -73,9 +97,21 @@ export default function Navbar() {
               {id.charAt(0).toUpperCase() + id.slice(1)}
             </a>
           ))}
+          <button
+            onClick={() => setShowChallenges(true)}
+            className="hover:text-[#00B4FF] transition-colors"
+          >
+            Challenges
+          </button>
           {/* Mobile register removed */}
         </div>
       </div>
+      
+      {/* Challenges Modal */}
+      <Challenges 
+        isOpen={showChallenges} 
+        onClose={() => setShowChallenges(false)} 
+      />
     </header>
   )
 }
