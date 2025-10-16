@@ -5,112 +5,131 @@ import { FaTrophy, FaTimes, FaCheck, FaFlag, FaClock, FaUser, FaPaperPlane, FaSa
 import { db, isConfigured } from '../firebaseConfig'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
+// Autopsy Forensics Challenge - Jimmy Wilson Case
 // Challenges data - no answers stored in frontend for security
 const challengesData = [
+  // Intermediate Level Challenges
   {
     id: 1,
-    title: "Network Analysis",
-    description: "Analyze the network traffic and find the suspicious IP address that was communicating with the compromised system.",
-    difficulty: "Easy",
-    points: 100
+    title: "Deleted File Database ID",
+    description: "What is the internal database ID of the deleted file draft_project.txt?",
+    difficulty: "Medium",
+    points: 150,
+    category: "Intermediate"
   },
   {
     id: 2,
-    title: "Memory Forensics",
-    description: "Extract the password from the memory dump. The password is stored in plaintext in a specific process.",
+    title: "SHA-256 Hash Analysis",
+    description: "What is the SHA-256 hash of secrets.txt?",
     difficulty: "Medium",
-    points: 200
+    points: 150,
+    category: "Intermediate"
   },
   {
     id: 3,
-    title: "File Recovery",
-    description: "A deleted file contains important evidence. What is the MD5 hash of the recovered file?",
-    difficulty: "Hard",
-    points: 300
+    title: "File Metadata Recovery",
+    description: "According to file metadata, what was the original path of deleted_photo.jpg before deletion?",
+    difficulty: "Medium",
+    points: 150,
+    category: "Intermediate"
   },
   {
     id: 4,
-    title: "Email Header Analysis",
-    description: "Examine the email headers to find the real sender's IP address behind the spoofed email.",
-    difficulty: "Easy",
-    points: 100
+    title: "Keyword Search Analysis",
+    description: "What keyword produces exactly 3 hits in the keyword search index?",
+    difficulty: "Medium",
+    points: 150,
+    category: "Intermediate"
   },
   {
     id: 5,
-    title: "Registry Forensics",
-    description: "Find the timestamp when the malicious software was first installed on the system.",
+    title: "MAC Time Analysis",
+    description: "What is the MAC (Modified–Accessed–Created) time difference between resume.docx and secrets.txt (in minutes)?",
     difficulty: "Medium",
-    points: 200
+    points: 150,
+    category: "Intermediate"
   },
+  // Hard Level Challenges
   {
     id: 6,
-    title: "Web Log Analysis",
-    description: "Identify the SQL injection attack pattern in the web server logs.",
+    title: "Registry Hive Analysis",
+    description: "What is the internal ID of the Windows registry hive NTUSER.DAT?",
     difficulty: "Hard",
-    points: 300
+    points: 250,
+    category: "Hard"
   },
   {
     id: 7,
-    title: "Mobile Forensics",
-    description: "Extract the deleted SMS message from the Android device backup.",
-    difficulty: "Medium",
-    points: 200
+    title: "Last Logged User",
+    description: "From registry analysis, what is the username of the account last logged in?",
+    difficulty: "Hard",
+    points: 250,
+    category: "Hard"
   },
   {
     id: 8,
-    title: "Steganography",
-    description: "Find the hidden message in the image file using LSB steganography.",
+    title: "Prefetch Analysis",
+    description: "What program was last executed based on the Prefetch folder artifacts?",
     difficulty: "Hard",
-    points: 300
+    points: 250,
+    category: "Hard"
   },
   {
     id: 9,
-    title: "Browser Artifacts",
-    description: "Recover the deleted browsing history to find the suspicious website visited.",
-    difficulty: "Easy",
-    points: 100
+    title: "Password Location",
+    description: "Which file contains a plaintext password, and what is its full path?",
+    difficulty: "Hard",
+    points: 250,
+    category: "Hard"
   },
   {
     id: 10,
-    title: "Disk Imaging",
-    description: "Calculate the SHA-256 hash of the disk image to verify its integrity.",
-    difficulty: "Medium",
-    points: 200
+    title: "Password Content",
+    description: "What is the string content of that password?",
+    difficulty: "Hard",
+    points: 250,
+    category: "Hard"
   },
+  // Investigator Level Challenges
   {
     id: 11,
-    title: "Timeline Analysis",
-    description: "Determine the exact time when the attacker first gained access to the system.",
-    difficulty: "Hard",
-    points: 300
+    title: "USB Device Serial",
+    description: "What is the USB serial number of the most recently connected removable device?",
+    difficulty: "Expert",
+    points: 350,
+    category: "Investigator"
   },
   {
     id: 12,
-    title: "Password Cracking",
-    description: "Crack the MD5 hashed password: 5d41402abc4b2a76b9719d911017c592",
-    difficulty: "Easy",
-    points: 100
+    title: "USB Connection Time",
+    description: "At what UTC time was that USB device last connected (from the SYSTEM hive)?",
+    difficulty: "Expert",
+    points: 350,
+    category: "Investigator"
   },
   {
     id: 13,
-    title: "Network Packet Analysis",
-    description: "Find the flag hidden in the TCP stream of the network capture.",
-    difficulty: "Medium",
-    points: 200
+    title: "GPS Coordinates",
+    description: "What are the GPS coordinates embedded in the image vacation.jpg (from EXIF)?",
+    difficulty: "Expert",
+    points: 350,
+    category: "Investigator"
   },
   {
     id: 14,
-    title: "Malware Analysis",
-    description: "Identify the C&C server domain used by the malware sample.",
-    difficulty: "Hard",
-    points: 300
+    title: "Data Exfiltration Analysis",
+    description: "Which executable was responsible for copying data to external media (based on recent file access correlation)?",
+    difficulty: "Expert",
+    points: 350,
+    category: "Investigator"
   },
   {
     id: 15,
-    title: "Digital Signature Verification",
-    description: "Verify the digital signature and extract the certificate's serial number.",
-    difficulty: "Medium",
-    points: 200
+    title: "Timeline Correlation",
+    description: "According to timeline correlation, what was the last user action before shutdown?",
+    difficulty: "Expert",
+    points: 350,
+    category: "Investigator"
   }
 ]
 
@@ -277,6 +296,7 @@ export default function Challenges({ isOpen, onClose }) {
       case 'Easy': return 'text-green-400 bg-green-500/20'
       case 'Medium': return 'text-yellow-400 bg-yellow-500/20'
       case 'Hard': return 'text-red-400 bg-red-500/20'
+      case 'Expert': return 'text-purple-400 bg-purple-500/20'
       default: return 'text-gray-400 bg-gray-500/20'
     }
   }
@@ -308,8 +328,8 @@ export default function Challenges({ isOpen, onClose }) {
               <div className="p-4 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 inline-flex mb-4">
                 <FaUser className="text-cyan-400 text-3xl" />
               </div>
-              <h2 className="text-2xl font-bold text-white mb-2">Welcome to CyberFest Challenges</h2>
-              <p className="text-gray-400">Please enter your username to continue</p>
+              <h2 className="text-2xl font-bold text-white mb-2">Autopsy Forensics Challenge</h2>
+              <p className="text-gray-400">Jimmy Wilson Case - Please enter your username to continue</p>
             </div>
 
             <div className="space-y-4">
@@ -372,8 +392,8 @@ export default function Challenges({ isOpen, onClose }) {
                 <FaTrophy className="text-cyan-400 text-xl" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-white">CyberFest Challenges</h2>
-                <p className="text-gray-400 text-sm">Welcome, {username}</p>
+                <h2 className="text-2xl font-bold text-white">Autopsy Forensics Challenge</h2>
+                <p className="text-gray-400 text-sm">Jimmy Wilson Case - Welcome, {username}</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
