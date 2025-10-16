@@ -11,40 +11,40 @@ const challengesData = [
   // Intermediate Level Challenges
   {
     id: 1,
-    title: "Deleted File Database ID",
-    description: "What is the internal database ID of the deleted file draft_project.txt?",
+    title: "Deleted File DB ID (new[1].js)",
+    description: "What is the internal database ID of the deleted file new[1].js?",
     difficulty: "Medium",
     points: 150,
     category: "Intermediate"
   },
   {
     id: 2,
-    title: "SHA-256 Hash Analysis",
-    description: "What is the SHA-256 hash of secrets.txt?",
+    title: "SHA-256 of imagesBUB3BGTH.jpg",
+    description: "What is the SHA-256 hash of imagesBUB3BGTH.jpg?",
     difficulty: "Medium",
     points: 150,
     category: "Intermediate"
   },
   {
     id: 3,
-    title: "File Metadata Recovery",
-    description: "According to file metadata, what was the original path of deleted_photo.jpg before deletion?",
+    title: "Original Path of $R8OPSCS.JPG",
+    description: "According to file metadata, what was the original path of $R8OPSCS.JPG before deletion?",
     difficulty: "Medium",
     points: 150,
     category: "Intermediate"
   },
   {
     id: 4,
-    title: "Keyword Search Analysis",
-    description: "What keyword produces exactly 3 hits in the keyword search index?",
+    title: "Keyword Regex 20E90d01",
+    description: "What is the keyword regular expression of 20E90d01?",
     difficulty: "Medium",
     points: 150,
     category: "Intermediate"
   },
   {
     id: 5,
-    title: "MAC Time Analysis",
-    description: "What is the MAC (Modified–Accessed–Created) time difference between resume.docx and secrets.txt (in minutes)?",
+    title: "Modified Time Difference",
+    description: "What is the Modified time difference between $R3TS6GA and $R1U0G7R.pdf (in minutes)?",
     difficulty: "Medium",
     points: 150,
     category: "Intermediate"
@@ -52,40 +52,40 @@ const challengesData = [
   // Hard Level Challenges
   {
     id: 6,
-    title: "Registry Hive Analysis",
-    description: "What is the internal ID of the Windows registry hive NTUSER.DAT?",
+    title: "Security ID of GOOGLE%20for%20web[1].jpg",
+    description: "What is the security ID of the file GOOGLE%20for%20web[1].jpg?",
     difficulty: "Hard",
     points: 250,
     category: "Hard"
   },
   {
     id: 7,
-    title: "Last Logged User",
-    description: "From registry analysis, what is the username of the account last logged in?",
+    title: "GobiernoUSA.gov.url - URL",
+    description: "From GobiernoUSA.gov.url, what is the URL?",
     difficulty: "Hard",
     points: 250,
     category: "Hard"
   },
   {
     id: 8,
-    title: "Prefetch Analysis",
-    description: "What program was last executed based on the Prefetch folder artifacts?",
+    title: "Email Subject (Data Artifacts)",
+    description: "What is the Subject of the Email messages artifact in Data Artifacts?",
     difficulty: "Hard",
     points: 250,
     category: "Hard"
   },
   {
     id: 9,
-    title: "Password Location",
-    description: "Which file contains a plaintext password, and what is its full path?",
+    title: "backenddb.xml Content",
+    description: "What is the string content of backenddb.xml?",
     difficulty: "Hard",
     points: 250,
     category: "Hard"
   },
   {
     id: 10,
-    title: "Password Content",
-    description: "What is the string content of that password?",
+    title: "DMARC Record for ctfd.io",
+    description: "What is the DMARC record for ctfd.io from the provided email headers?",
     difficulty: "Hard",
     points: 250,
     category: "Hard"
@@ -93,40 +93,40 @@ const challengesData = [
   // Investigator Level Challenges
   {
     id: 11,
-    title: "USB Device Serial",
-    description: "What is the USB serial number of the most recently connected removable device?",
+    title: "From Address in 41DBB26E9-00000001.eml",
+    description: "What is the from address (mail address) of the file 41DBB26E9-00000001.eml?",
     difficulty: "Expert",
     points: 350,
     category: "Investigator"
   },
   {
     id: 12,
-    title: "USB Connection Time",
-    description: "At what UTC time was that USB device last connected (from the SYSTEM hive)?",
+    title: "Firefox Analyzer - Most Searched",
+    description: "What is the most searched term in Firefox analyzer?",
     difficulty: "Expert",
     points: 350,
     category: "Investigator"
   },
   {
     id: 13,
-    title: "GPS Coordinates",
-    description: "What are the GPS coordinates embedded in the image vacation.jpg (from EXIF)?",
+    title: "Last Directory Entry Before Shutdown",
+    description: "What is the last directory entry accessed before system shutdown?",
     difficulty: "Expert",
     points: 350,
     category: "Investigator"
   },
   {
     id: 14,
-    title: "Data Exfiltration Analysis",
-    description: "Which executable was responsible for copying data to external media (based on recent file access correlation)?",
+    title: "Images on Desktop - Jose Badguy",
+    description: "How many pictures are on the desktop under the folder \"Jose Badguy\"?",
     difficulty: "Expert",
     points: 350,
     category: "Investigator"
   },
   {
     id: 15,
-    title: "Timeline Correlation",
-    description: "According to timeline correlation, what was the last user action before shutdown?",
+    title: "USB Device Make",
+    description: "What is the Device Make of the recently attached USB device?",
     difficulty: "Expert",
     points: 350,
     category: "Investigator"
@@ -190,7 +190,8 @@ export default function Challenges({ isOpen, onClose }) {
         timestamp: new Date().toISOString(),
         challengeTitle: challenge.title,
         difficulty: challenge.difficulty,
-        points: challenge.points
+        points: challenge.points,
+        category: challenge.category
       }
     }))
 
@@ -232,7 +233,7 @@ export default function Challenges({ isOpen, onClose }) {
           throw new Error('Firebase connection failed')
         }
         
-        // Submit all saved answers to Firebase at once
+        // Submit all saved answers to Firebase at once using batch write
         const submissions = Object.entries(savedAnswers).map(([challengeId, answerData]) => ({
           username: username.trim(),
           challengeId: parseInt(challengeId),
@@ -242,22 +243,24 @@ export default function Challenges({ isOpen, onClose }) {
           points: answerData.points,
           timestamp: serverTimestamp(),
           status: 'submitted',
-          savedAt: answerData.timestamp
+          savedAt: answerData.timestamp,
+          category: answerData.category || 'General'
         }))
 
-        console.log('Preparing to submit:', submissions.length, 'submissions')
+        console.log('Preparing to submit:', submissions.length, 'submissions to single collection')
 
-        // Submit each answer individually to better track errors
+        // Submit all answers as individual documents to the same collection
+        // This ensures all user answers are in one place for easy retrieval
         const results = []
         for (let i = 0; i < submissions.length; i++) {
           try {
-            console.log(`Submitting answer ${i + 1}/${submissions.length}...`)
+            console.log(`Submitting answer ${i + 1}/${submissions.length} to challenge_submissions collection...`)
             const docRef = await addDoc(collection(db, 'challenge_submissions'), submissions[i])
             console.log(`Answer ${i + 1} submitted with ID:`, docRef.id)
-            results.push({ success: true, id: docRef.id })
+            results.push({ success: true, id: docRef.id, challengeId: submissions[i].challengeId })
           } catch (submitError) {
             console.error(`Failed to submit answer ${i + 1}:`, submitError)
-            results.push({ success: false, error: submitError.message })
+            results.push({ success: false, error: submitError.message, challengeId: submissions[i].challengeId })
           }
         }
 
