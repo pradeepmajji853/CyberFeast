@@ -29,7 +29,9 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="smooth-scroll">
-      <body className={`${orbitron.variable} ${poppins.variable} font-poppins beam-bg`}>
+      {/* forensiq hex: 666f72656e7369717b686561645f6865785f68696e747d */}
+      {/* forensiq base64: Zm9yZW5zaXF7aHRtbF9oZWFkfQ== */}
+      <body className={`${orbitron.variable} ${poppins.variable} font-poppins beam-bg`} data-forensiq-b64="Zm9yZW5zaXFre2Jhc2U2NF9pZXRhfQ==">
         <BackgroundNetwork />
         <CursorGlow />
         <Navbar />

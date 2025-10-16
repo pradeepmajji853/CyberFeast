@@ -9,7 +9,6 @@
 
 html, body, :root {
   height: 100%;
-  overflow-x: hidden; /* prevent stray horizontal scroll */
 }
 
 body {
@@ -78,7 +77,7 @@ body::before {
   font-family: var(--font-orbitron);
   font-weight: 700;
   letter-spacing: 0.04em;
-  font-size: clamp(1.5rem, 1.2rem + 2.5vw, 2.25rem); /* slightly smaller on xs */
+  font-size: clamp(1.875rem, 1.3rem + 1.5vw, 2.25rem); /* ~text-3xl to 4xl */
   text-shadow: 0 0 10px rgba(0,71,171,0.4);
 }
 
@@ -86,7 +85,7 @@ body::before {
   font-family: var(--font-orbitron);
   font-weight: 700;
   letter-spacing: 0.04em;
-  font-size: clamp(1.5rem, 1.2rem + 2.5vw, 2.25rem);
+  font-size: clamp(1.875rem, 1.3rem + 1.5vw, 2.25rem);
   color: #00336e; /* cobalt-950 */
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
@@ -235,29 +234,91 @@ html {
 }
 .button-magnet:hover::after { opacity: 1; }
 
-/* Gradient Blinds container utility */
-.gradient-blinds-container {
+/* Challenges specific styles */
+.challenge-modal {
+  backdrop-filter: blur(12px);
+}
+
+.challenge-card {
   position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  background: linear-gradient(135deg, rgba(26, 31, 58, 0.8), rgba(14, 24, 51, 0.8));
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  transition: all 0.3s ease;
 }
 
-/* Responsive helpers */
-@media (max-width: 640px) {
-  body::before { background-size: 40px 40px, 40px 40px; }
+.challenge-card:hover {
+  border-color: rgba(34, 211, 238, 0.5);
+  box-shadow: 0 8px 32px rgba(34, 211, 238, 0.15);
+  transform: translateY(-2px);
 }
 
-.wrap-anywhere {
-  overflow-wrap: anywhere;
-  word-break: break-word;
+.challenge-card.active {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.15), rgba(59, 130, 246, 0.1));
+  border-color: rgba(34, 211, 238, 0.6);
 }
 
-/* Avoid 100vw scrollbar compensation issues */
-.full-viewport {
-  width: 100svw;
-  min-height: 100svh;
+.challenge-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  transition: all 0.3s ease;
 }
 
-/* Ensure fixed pseudo elements don’t overflow */
-body, body::before { max-width: 100%; }
+.challenge-input:focus {
+  border-color: rgba(34, 211, 238, 0.6);
+  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.challenge-submit {
+  background: linear-gradient(135deg, #3B82F6, #22D3EE);
+  transition: all 0.3s ease;
+}
+
+.challenge-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.challenge-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.difficulty-easy {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22C55E;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.difficulty-medium {
+  background: rgba(251, 191, 36, 0.2);
+  color: #FBBF24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.difficulty-hard {
+  background: rgba(239, 68, 68, 0.2);
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Scrollbar styling for challenge lists */
+.challenge-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.challenge-sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.challenge-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.3);
+  border-radius: 3px;
+}
+
+.challenge-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.5);
+}

@@ -76,6 +76,44 @@ export default function Hero() {
     return () => window.removeEventListener('mousemove', onMove)
   }, [mouseX, mouseY])
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const shouldOpen = sessionStorage.getItem('openFlagModal')
+    if (shouldOpen) {
+      sessionStorage.removeItem('openFlagModal')
+      setTimeout(() => setModalOpen(true), 250)
+    }
+  }, [])
+
+  useEffect(() => {
+    // Hidden b64 payload (decode to reveal): Zm9yZW5zaXF7aGVybl9iNjRfcHJvYmU}
+    // DevTools banner + window API flag
+    try {
+      if (typeof window !== 'undefined') {
+        // Subtle banner
+        const msg1 = '%cForensIQ DevTools'
+        const style1 = 'color:#00B4FF;font-weight:700;font-size:14px;'
+        const msg2 = '%cCurious minds find rewards. flag => forensiq{console_greetings}'
+        const style2 = 'color:#9CCBFF;font-size:12px;'
+        // Log once per session
+        if (!sessionStorage.getItem('fiq_console_flag')) {
+          // eslint-disable-next-line no-console
+          console.log(msg1, style1)
+          // eslint-disable-next-line no-console
+          console.log(msg2, style2)
+          sessionStorage.setItem('fiq_console_flag', '1')
+        }
+        // Expose a helper in case users try window.forensiq()
+        window.forensiq = () => {
+          const v = 'forensiq{window_api}'
+          // eslint-disable-next-line no-console
+          console.info('ForensIQ helper says:', v)
+          return v
+        }
+      }
+    } catch { /* noop */ }
+  }, [])
+
   return (
     <section id="home" className="scroll-mt-24 md:scroll-mt-28 full-viewport min-h-screen min-h-[100svh] md:min-h-screen pt-24 md:pt-32 pb-6 md:pb-10 relative overflow-hidden overflow-x-hidden flex items-center">
       {/* Existing particles (kept above background) */}
@@ -197,12 +235,12 @@ export default function Hero() {
           <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-[rgba(0,71,171,0.6)] to-[rgba(0,180,255,0.6)] blur-xl animate-pulse" />
           <motion.button
             type="button"
+            onClick={() => setModalOpen(true)}
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => setModalOpen(true)}
             className="relative inline-block w-full sm:w-auto px-7 md:px-8 py-3.5 md:py-4 rounded-lg bg-gradient-to-r from-[#0047AB] to-[#00B4FF] text-white font-bold text-base md:text-lg shadow-neon transition-all duration-300"
           >
-            Register Now
+            Submit flags now
             <motion.span
               className="absolute inset-0 rounded-lg"
               initial={{ opacity: 0 }}

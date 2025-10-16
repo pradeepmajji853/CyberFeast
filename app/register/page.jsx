@@ -53,6 +53,7 @@ export default function RegisterPage() {
 
   return (
     <main className="min-h-screen pt-24 pb-16 flex items-center justify-center px-4 bg-gradient-to-b from-[#0B1020] via-[#0e1430] to-[#0B1020]">
+      {/* If you sniff headers, decode hex from ETag pattern: 666f72656e7369717b657461675f71756573747d => forensiq{etag_quest} */}
       <div className="relative max-w-xl w-full">
         <h1 className="section-title text-center">Register for CyberFest 2025</h1>
         {/* Config notice */}

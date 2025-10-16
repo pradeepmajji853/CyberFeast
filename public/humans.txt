@@ -1,0 +1,10 @@
+# ForensIQ humans
+# We build, we investigate, we learn.
+# Hint paths: /.well-known/forensiq.txt
+
+Team: Digital Defense Club, CBIT
+Site: ForensIQ 2025
+
+Clue: Seek and you shall find.
+Hint: Our well-known keeps secrets.
+Token: forensiq{humans_of_cbit}

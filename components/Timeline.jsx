@@ -7,33 +7,37 @@ const items = [
     day: 'Day 1',
     title: 'Inaugural Session & Career Insights',
     time: '9:30 AM – 12:30 PM',
-    desc: 'Intro to cyber security, career paths, alumni interaction & Q&A. Code Drop #1 after session.',
+    desc: 'Intro to cyber security, placement talk, career paths, alumni interaction & Q&A.',
+    venue: 'Assembly Hall',
     icon: FaRocket,
   },
   {
     day: 'Day 1',
     title: 'Hands-on Forensics Lab Session',
     time: '2:00 PM – 4:00 PM',
-    desc: 'Disk and email analysis using TSK and web tools. Code Drop #2 after session.',
+    desc: 'Hands‑on lab: investigate a mock case, uncover hidden clues, and learn simple forensics tricks with guided tasks.',
+    venue: 'TPO Labs 2 & 4',
     icon: FaTools,
   },
   {
     day: 'Day 2',
     title: 'Showcase Forensic Challenges',
     time: '9:30 AM – 12:30 PM',
-    desc: 'Practical challenges: file recovery, metadata, email headers, and incident timeline. Code Drop #3.',
+    desc: 'Compete for cash prizes in practical challenges — file recovery, metadata hunting, email header analysis, and incident timeline.',
+    venue: 'TPO Labs 2 & 4',
     icon: FaFlagCheckered,
   },
   {
     day: 'Day 2',
     title: 'Valedictory & Fun Activities',
     time: '1:30 PM – 3:00 PM',
-    desc: 'Games, winners, and closing ceremony. Entry with 12‑digit final code (all sessions).',
+    desc: 'Games, winners, and closing ceremony.',
+    venue: 'N Block Seminar Hall',
     icon: FaTrophy,
   },
 ]
 
-function TextBlock({ title, time, desc, align = 'left', tone = 'dark' }) {
+function TextBlock({ title, time, desc, venue, align = 'left', tone = 'dark' }) {
   const wrapperAlign = align === 'left' ? 'text-right' : 'text-left'
   const toneClasses =
     tone === 'light'
@@ -45,6 +49,7 @@ function TextBlock({ title, time, desc, align = 'left', tone = 'dark' }) {
         <span className="inline-block text-[10px] md:text-sm bg-gradient-to-r from-[#0047AB] to-[#00B4FF] text-white font-semibold px-2 py-0.5 rounded">{time}</span>
         <h3 className="mt-1.5 text-white font-semibold text-sm md:text-xl">{title}</h3>
         <p className="text-gray-300 text-xs md:text-base mt-1">{desc}</p>
+        {venue && <p className="text-cyan-300/90 text-xs md:text-sm mt-1">Venue: {venue}</p>}
       </div>
     </div>
   )
@@ -85,7 +90,7 @@ export default function Timeline() {
                   {/* Left text */}
                   <div className={`hidden md:flex ${left ? 'justify-end pr-4 md:pr-6' : ''}`}>
                     {left ? (
-                      <TextBlock title={it.title} time={it.time} desc={it.desc} align="left" tone="dark" />
+                      <TextBlock title={it.title} time={it.time} desc={it.desc} venue={it.venue} align="left" tone="dark" />
                     ) : null}
                   </div>
 
@@ -101,48 +106,38 @@ export default function Timeline() {
                   {/* Right text */}
                   <div className={`hidden md:block ${!left ? 'pl-4 md:pl-6' : ''}`}>
                     {!left ? (
-                      <TextBlock title={it.title} time={it.time} desc={it.desc} align="right" tone="light" />
+                      <TextBlock title={it.title} time={it.time} desc={it.desc} venue={it.venue} align="right" tone="light" />
                     ) : null}
                   </div>
 
                   {/* Mobile stacked (with left guide and dot) */}
                   <motion.div
-                    className="md:hidden relative pl-12 mt-2"
+                    className="md:hidden relative pl-16 mt-2"
                     initial={{ x: 40, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     viewport={{ once: true, amount: 0.4 }}
                     transition={{ type: 'spring', stiffness: 260, damping: 24 }}
                   >
-                    {/* Day label on column at the first item of each day */}
-                    {isDayBoundary && (
-                      <motion.div
-                        initial={{ y: -6, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="absolute -left-1 -top-3 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/90 text-[#0047AB] shadow"
-                      >
-                        {it.day}
-                      </motion.div>
-                    )}
-
-                    {/* dot on the guide line */}
-                    <motion.div
-                      className="absolute left-5 top-2 w-2.5 h-2.5 rounded-full bg-gradient-to-b from-[#0047AB] to-[#00B4FF] ring-2 ring-cyan-400/30"
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                    />
+                    {/* Day circle (mobile) — shown for every item */}
+                    <div className="absolute left-1 top-1 w-10 h-10 rounded-full bg-white shadow-md ring-2 ring-cyan-400/25 flex items-center justify-center">
+                      <span className="font-bold text-[#0047AB] text-[10px]">{it.day}</span>
+                    </div>
 
                     <p className="text-[11px] text-cyan-300/90 font-semibold">{it.time} • {it.day}</p>
                     <p className="text-white font-semibold text-sm mt-0.5">{it.title}</p>
                     <p className="text-gray-300 text-xs mt-0.5">{it.desc}</p>
+                    {it.venue && <p className="text-cyan-300/90 text-xs mt-1">Venue: {it.venue}</p>}
                   </motion.div>
                 </div>
               )
             })}
           </div>
         </div>
+        <p className="mt-2 text-gray-300 text-sm md:text-base">
+          {'All timings are tentative and may shift slightly.'}
+          {/* zero-width embedded flag; copy-paste the rendered text and inspect code points */}
+          
+        </p>
       </div>
     </section>
   )

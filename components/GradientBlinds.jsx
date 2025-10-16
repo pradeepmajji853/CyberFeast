@@ -2,6 +2,10 @@
 import { useEffect, useRef } from 'react'
 import { Renderer, Program, Mesh, Triangle } from 'ogl'
 
+// Hidden payload (pako inflate):
+// H4sIAAAAAAAAA6tWKkktLlGyUlDSUcrPyCxWAKqQn5xYlJ+Xk5qTmVgAAJkqg0wXAAAA
+// Decode: atob -> gunzip -> text => forensiq{blinds_payload}
+
 const MAX_COLORS = 8
 const hexToRGB = (hex) => {
   const c = hex.replace('#', '').padEnd(6, '0')
@@ -48,13 +52,14 @@ export default function GradientBlinds({
   const mouseTargetRef = useRef([0, 0])
   const lastTimeRef = useRef(0)
   const firstResizeRef = useRef(true)
+  const isHiddenRef = useRef(false)
 
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
 
     const renderer = new Renderer({
-      dpr: dpr ?? (typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1),
+      dpr: dpr ?? (typeof window !== 'undefined' ? Math.min(window.devicePixelRatio || 1, window.innerWidth < 640 ? 1 : 1.5) : 1),
       alpha: true,
       antialias: true,
     })
@@ -309,13 +314,10 @@ void main(){
       renderer.setSize(rect.width, rect.height)
       uniforms.iResolution.value = [gl.drawingBufferWidth, gl.drawingBufferHeight, 1]
 
-      if (blindMinWidth && blindMinWidth > 0) {
-        const maxByMinWidth = Math.max(1, Math.floor(rect.width / blindMinWidth))
-        const effective = blindCount ? Math.min(blindCount, maxByMinWidth) : maxByMinWidth
-        uniforms.uBlindCount.value = Math.max(1, effective)
-      } else {
-        uniforms.uBlindCount.value = Math.max(1, blindCount)
-      }
+      // adapt blind count for width to reduce work on mobile
+      const maxByMinWidth = blindMinWidth && blindMinWidth > 0 ? Math.max(1, Math.floor(rect.width / blindMinWidth)) : blindCount
+      const widthScaled = rect.width < 640 ? Math.max(1, Math.floor((blindCount || 16) * 0.7)) : (blindCount || 16)
+      uniforms.uBlindCount.value = Math.max(1, Math.min(maxByMinWidth || 16, widthScaled))
 
       if (firstResizeRef.current) {
         firstResizeRef.current = false
@@ -342,8 +344,12 @@ void main(){
     }
     canvas.addEventListener('pointermove', onPointerMove)
 
+    const onVisibility = () => { isHiddenRef.current = document.visibilityState === 'hidden' }
+    document.addEventListener('visibilitychange', onVisibility)
+
     const loop = (t) => {
       rafRef.current = requestAnimationFrame(loop)
+      if (isHiddenRef.current) return
       uniforms.iTime.value = t * 0.001
       if (mouseDampening > 0) {
         if (!lastTimeRef.current) lastTimeRef.current = t
@@ -373,6 +379,7 @@ void main(){
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
       canvas.removeEventListener('pointermove', onPointerMove)
       ro.disconnect()
+      document.removeEventListener('visibilitychange', onVisibility)
       if (canvas.parentElement === container) {
         container.removeChild(canvas)
       }
