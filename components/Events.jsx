@@ -13,16 +13,13 @@ const bigFourCompanies = [
 
 const prizes = [
   { icon: FaMoneyBillWave, title: 'Cash Prizes', desc: 'Win exciting cash rewards', color: 'from-[#005ed1] to-[#00B4FF]' },
-  { icon: FaGoogle, title: 'Google Credits', desc: 'Cloud platform credits', color: 'from-[#0047AB] to-[#00AEEF]' },
-  { icon: FaCertificate, title: 'Gemini Certificates', desc: 'Official AI certifications', color: 'from-[#00336e] to-[#005ed1]' },
   { icon: FaGift, title: 'Goodies', desc: 'Exclusive swag & merchandise', color: 'from-[#0066ff] to-[#00B4FF]' },
 ]
 
 const features = [
   { icon: FaBriefcase, title: 'Placement Talks', desc: 'Career insights from Big 4 cybersecurity professionals' },
   { icon: FaMicroscope, title: 'Forensics Workshop', desc: 'Hands-on digital investigation training' },
-  { icon: FaTrophy, title: 'CTF Challenges', desc: 'Competitive forensics challenges with prizes' },
-  { icon: FaCheckCircle, title: '100% Free', desc: 'Everything free for all attendees!' },
+  { icon: FaTrophy, title: 'Forensics Challenges', desc: 'Competitive forensics challenges with prizes' },
 ]
 
 export default function Events() {
@@ -93,24 +90,29 @@ export default function Events() {
           </p>
         </motion.div>
 
-        {/* Key Features Grid */}
+        {/* Key Features - Centered 3 Cards */}
         <motion.div
-          {...motionProps(0, 20, 0.45)}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
         >
           {features.map((feature, idx) => (
             <motion.div
               key={feature.title}
-              {...(reduceMotion ? { initial: false } : { initial: { opacity: 0, y: 12 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.35, delay: idx * 0.07 } })}
-              whileHover={!isMobile ? { y: -4, scale: 1.01 } : undefined}
-              onMouseMove={!isMobile ? handleMouseMove : undefined}
-              className="tilt group relative bg-gradient-to-br from-[#1a1f3a]/80 to-[#0e1833]/80 border border-cyan-500/20 rounded-2xl p-6 hover:border-cyan-400/40 transition-all duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: idx * 0.1 }}
+              whileHover={{ y: -6, scale: 1.015, rotate: 0.2 }}
+              onMouseMove={handleMouseMove}
+              className="tilt group relative bg-gradient-to-br from-[#1a1f3a]/80 to-[#0e1833]/80 backdrop-blur-sm border border-cyan-500/20 rounded-2xl p-6 hover:border-cyan-400/40 transition-all duration-300"
             >
               <span aria-hidden className="interactive-spotlight rounded-2xl" />
-              {/* subtle hover tint, no extra blur */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300" />
               <div className="relative">
-                <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 text-cyan-400 mb-4">
+                <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 text-cyan-400 mb-4 group-hover:scale-110 transition-transform duration-300">
                   <feature.icon className="text-3xl" />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
@@ -161,10 +163,10 @@ export default function Events() {
                       ))}
                     </ul>
                     <motion.button
-                      whileHover={!isMobile ? { scale: 1.03, x: 3 } : undefined}
-                      whileTap={!isMobile ? { scale: 0.98 } : undefined}
-                      className="button-magnet inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300"
-                      onMouseMove={!isMobile ? handleMouseMove : undefined}
+                      whileHover={{ scale: 1.05, x: 5 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="button-magnet inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/50 transition-all duration-300"
+                      onMouseMove={handleMouseMove}
                     >
                       Learn More
                     </motion.button>
@@ -184,14 +186,12 @@ export default function Events() {
                         className="relative aspect-[16/10] rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 p-6 flex items-center justify-center group overflow-hidden"
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        {/* shimmer removed for performance */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 animate-shimmer" />
                         <Image
                           src={`/logos/${company.file}`}
                           alt={company.name}
                           fill
-                          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                          className="object-contain p-4"
-                          priority={idx === 0}
+                          className="object-contain p-4 transition-transform duration-300 group-hover:scale-110"
                         />
                       </motion.div>
                     ))}
@@ -238,10 +238,10 @@ export default function Events() {
                 ))}
               </ul>
               <motion.button
-                whileHover={!isMobile ? { scale: 1.03 } : undefined}
-                whileTap={!isMobile ? { scale: 0.98 } : undefined}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
                 className="button-magnet inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold"
-                onMouseMove={!isMobile ? handleMouseMove : undefined}
+                onMouseMove={handleMouseMove}
               >
                 Details Coming Soon
               </motion.button>
@@ -274,10 +274,10 @@ export default function Events() {
                 ))}
               </ul>
               <motion.button
-                whileHover={!isMobile ? { scale: 1.03 } : undefined}
-                whileTap={!isMobile ? { scale: 0.98 } : undefined}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
                 className="button-magnet inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold"
-                onMouseMove={!isMobile ? handleMouseMove : undefined}
+                onMouseMove={handleMouseMove}
               >
                 Details Coming Soon
               </motion.button>
@@ -309,13 +309,16 @@ export default function Events() {
               {prizes.map((prize, idx) => (
                 <motion.div
                   key={prize.title}
-                  {...(reduceMotion ? { initial: false } : { initial: { opacity: 0, scale: 0.98 }, whileInView: { opacity: 1, scale: 1 }, viewport: { once: true }, transition: { duration: 0.35, delay: idx * 0.06 } })}
-                  whileHover={!isMobile ? { scale: 1.04, y: -4 } : undefined}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  whileHover={{ scale: 1.08, y: -8, rotate: 3 }}
                   className="relative group"
                 >
-                  <div className="relative bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-2xl p-6 text-center hover:border-white/40 transition-all duration-300 overflow-hidden">
+                  <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center hover:border-white/40 transition-all duration-300 overflow-hidden">
                     <div className={`absolute inset-0 bg-gradient-to-br ${prize.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-                    <div className={`relative inline-flex p-4 rounded-2xl bg-gradient-to-br ${prize.color} text-white mb-4`}>
+                    <div className={`relative inline-flex p-4 rounded-2xl bg-gradient-to-br ${prize.color} text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
                       <prize.icon className="text-3xl" />
                     </div>
                     <h4 className="text-lg font-bold text-white mb-2">{prize.title}</h4>
@@ -344,12 +347,12 @@ export default function Events() {
         >
           <motion.a
             href="/register"
-            whileHover={!isMobile ? { scale: 1.03 } : undefined}
-            whileTap={!isMobile ? { scale: 0.98 } : undefined}
-            className="button-magnet inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-[#0047AB] to-[#00B4FF] text-white text-lg font-bold shadow-2xl shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300"
-            onMouseMove={!isMobile ? handleMouseMove : undefined}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            className="button-magnet inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-[#0047AB] to-[#00B4FF] text-white text-lg font-bold shadow-2xl shadow-blue-500/40 hover:shadow-3xl hover:shadow-blue-500/60 transition-all duration-300"
+            onMouseMove={handleMouseMove}
           >
-             Free Registration
+             Register
           </motion.a>
           <p className="mt-4 text-gray-400">Limited seats available.</p>
         </motion.div>

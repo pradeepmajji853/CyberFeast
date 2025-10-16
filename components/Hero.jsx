@@ -79,7 +79,7 @@ export default function Hero() {
           transition={{ duration: 0.7 }}
           className="section-title text-glow"
         >
-          CyberFest 2025 – Forensics Edition
+          ForensIQ - The forensics Edition
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -87,7 +87,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="mt-3 text-[var(--cobalt,#0047AB)] font-medium text-xl md:text-2xl"
         >
-          Decode. Investigate. Defend.
+          Step into the world of cyber investigation
         </motion.p>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -98,32 +98,36 @@ export default function Hero() {
           Flagship event of the Digital Defense Club (DDC), held during Cybersecurity Awareness Month.
         </motion.p>
         <div className="relative inline-block mt-10">
-          <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-[rgba(0,71,171,0.6)] to-[rgba(0,180,255,0.6)] blur-xl animate-pulse" />
-          <motion.a
-            href="/register"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            className="relative inline-block px-8 py-4 rounded-lg bg-gradient-to-r from-[#0047AB] to-[#00B4FF] text-white font-bold text-lg shadow-neon transition-all duration-300"
-          >
-            Register Now
-            <motion.span
-              className="absolute inset-0 rounded-lg"
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 1 }}
-              style={{
-                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
-                backgroundSize: '200% 100%',
-              }}
-              animate={{
-                backgroundPosition: ['200% center', '-200% center'],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-              }}
-            />
-          </motion.a>
-        </div>
+  <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-[rgba(0,71,171,0.6)] to-[rgba(0,180,255,0.6)] blur-xl animate-pulse" />
+  <motion.a
+    href="https://forms.gle/DBoFP7k4ND4Nh2MUA"
+    target="_blank"
+    rel="noopener noreferrer"
+    whileHover={{ scale: 1.05, y: -2 }}
+    whileTap={{ scale: 0.98 }}
+    className="relative inline-block px-8 py-4 rounded-lg bg-gradient-to-r from-[#0047AB] to-[#00B4FF] text-white font-bold text-lg shadow-neon transition-all duration-300"
+  >
+    Register Now
+    <motion.span
+      className="absolute inset-0 rounded-lg"
+      initial={{ opacity: 0 }}
+      whileHover={{ opacity: 1 }}
+      style={{
+        background:
+          'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
+        backgroundSize: '200% 100%',
+      }}
+      animate={{
+        backgroundPosition: ['200% center', '-200% center'],
+      }}
+      transition={{
+        duration: 1.5,
+        repeat: Infinity,
+      }}
+    />
+  </motion.a>
+</div>
+
         
         {/* Scroll indicator removed per request */}
       </div>
