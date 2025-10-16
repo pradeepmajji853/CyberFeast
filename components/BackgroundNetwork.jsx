@@ -9,6 +9,8 @@ const palette = {
   white: 'rgba(255, 255, 255, 1)',
 }
 
+// Homoglyph hint: The word “𝖋𝗈𝗋𝖾𝗇𝗌𝗂𝗾” uses mixed Unicode forms; NFKC normalize -> forensiq{unicode_homoglyph}
+
 export default function BackgroundNetwork() {
   const canvasRef = useRef(null)
   const rafRef = useRef(0)
@@ -20,7 +22,8 @@ export default function BackgroundNetwork() {
     if (!canvas) return
     const ctx = canvas.getContext('2d', { alpha: true })
 
-    let dpr = Math.min(window.devicePixelRatio || 1, 2)
+    const isMobile = typeof window !== 'undefined' ? window.innerWidth < 640 : false
+    let dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1 : 1.5)
     let width = 0
     let height = 0
     let isPaused = false
@@ -31,39 +34,47 @@ export default function BackgroundNetwork() {
 
     function initNodes() {
       const area = width * height
-      const baseCount = prefersReduced ? 35 : 78
-      const density = prefersReduced ? 14000 : 12000
-      const count = Math.max(baseCount, Math.min(170, Math.floor(area / density)))
+      const baseCount = prefersReduced ? 20 : isMobile ? 40 : 78
+      const density = prefersReduced ? 18000 : isMobile ? 16000 : 12000
+      const count = Math.max(baseCount, Math.min(isMobile ? 110 : 170, Math.floor(area / density)))
       const nodes = new Array(count).fill(0).map(() => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: rand(-0.25, 0.25),
-        vy: rand(-0.25, 0.25),
-        r: rand(0.8, 1.6),
+        vx: rand(-0.22, 0.22),
+        vy: rand(-0.22, 0.22),
+        r: rand(0.8, isMobile ? 1.2 : 1.6),
         color: [palette.cobalt, palette.amethyst, palette.cyan, palette.white][Math.floor(Math.random() * 4)],
       }))
       nodesRef.current = nodes
     }
 
     function resize() {
-      width = window.innerWidth
-      height = window.innerHeight
+      const vw = (window.visualViewport && window.visualViewport.width) || window.innerWidth
+      const vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight
+      width = Math.max(1, Math.floor(vw))
+      height = Math.max(1, Math.floor(vh))
       canvas.width = Math.floor(width * dpr)
       canvas.height = Math.floor(height * dpr)
-      canvas.style.width = width + 'px'
-      canvas.style.height = height + 'px'
+      canvas.style.width = '100%'
+      canvas.style.height = '100%'
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       initNodes()
     }
 
+    let frame = 0
     function step() {
       if (isPaused) return
+      // skip every other frame on mobile or reduced motion
+      if (isMobile || prefersReduced) {
+        frame = (frame + 1) % 2
+        if (frame === 1) { rafRef.current = requestAnimationFrame(step); return }
+      }
       const nodes = nodesRef.current
       ctx.clearRect(0, 0, width, height)
 
-      const maxDist = prefersReduced ? 140 : 200
+      const maxDist = prefersReduced ? 120 : isMobile ? 150 : 200
       const mouse = mouseRef.current
-      const highlight = mouse.active ? 1.6 : 1.0
+      const highlight = mouse.active ? 1.4 : 1.0
 
       // Update nodes
       for (let i = 0; i < nodes.length; i++) {
@@ -74,8 +85,8 @@ export default function BackgroundNetwork() {
           const dist = Math.hypot(dx, dy)
           if (dist < maxDist * 1.1) {
             const force = (maxDist - dist) / maxDist
-            n.vx += (dx / (dist || 1)) * 0.008 * force
-            n.vy += (dy / (dist || 1)) * 0.008 * force
+            n.vx += (dx / (dist || 1)) * 0.006 * force
+            n.vy += (dy / (dist || 1)) * 0.006 * force
           }
         }
         n.x += n.vx
@@ -86,18 +97,17 @@ export default function BackgroundNetwork() {
         n.vy *= 0.996
       }
 
-      // Connections
+      // Connections (limit j loop on mobile)
+      const stepJ = isMobile ? 2 : 1
       for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
+        for (let j = i + stepJ; j < nodes.length; j += stepJ) {
           const a = nodes[i], b = nodes[j]
           const dx = a.x - b.x
           const dy = a.y - b.y
           const dist = Math.hypot(dx, dy)
           if (dist < maxDist) {
             const t = 1 - dist / maxDist
-            const alpha = Math.min(0.34 * t * highlight, 0.85)
-            
-            // Blend colors of connected nodes
+            const alpha = Math.min(0.3 * t * highlight, 0.7)
             const colorA = a.color.match(/\d+/g).map(Number)
             const colorB = b.color.match(/\d+/g).map(Number)
             const blendedColor = [
@@ -107,7 +117,7 @@ export default function BackgroundNetwork() {
             ]
 
             ctx.strokeStyle = `rgba(${blendedColor[0]}, ${blendedColor[1]}, ${blendedColor[2]}, ${alpha})`
-            ctx.lineWidth = Math.max(1.0, 2.2 * t * (mouse.active ? 1.3 : 1))
+            ctx.lineWidth = Math.max(1.0, 2.0 * t * (mouse.active ? 1.2 : 1))
             ctx.beginPath()
             ctx.moveTo(a.x, a.y)
             ctx.lineTo(b.x, b.y)
@@ -119,9 +129,9 @@ export default function BackgroundNetwork() {
       // Nodes
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i]
-        const nodeAlpha = mouse.active ? 0.8 : 0.5
-        const r = n.r * (mouse.active ? 1.2 : 1)
-        ctx.fillStyle = n.color.replace(/, 1\)$/, `, ${nodeAlpha})`)
+        const nodeAlpha = mouse.active ? 0.75 : 0.45
+        const r = n.r * (mouse.active ? 1.1 : 1)
+        ctx.fillStyle = n.color.replace(/, 1\)$/i, `, ${nodeAlpha})`)
         ctx.beginPath()
         ctx.arc(n.x, n.y, r, 0, Math.PI * 2)
         ctx.fill()
@@ -148,6 +158,7 @@ export default function BackgroundNetwork() {
     }
 
     window.addEventListener('resize', resize)
+    window.addEventListener('orientationchange', resize)
     window.addEventListener('mousemove', onMouseMove)
     window.addEventListener('mouseleave', onMouseLeave)
     document.addEventListener('visibilitychange', onVisibility)
@@ -158,6 +169,7 @@ export default function BackgroundNetwork() {
     return () => {
       cancelAnimationFrame(rafRef.current)
       window.removeEventListener('resize', resize)
+      window.removeEventListener('orientationchange', resize)
       window.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('mouseleave', onMouseLeave)
       document.removeEventListener('visibilitychange', onVisibility)

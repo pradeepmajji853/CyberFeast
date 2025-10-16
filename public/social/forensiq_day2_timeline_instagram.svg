@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#091025"/>
+      <stop offset="60%" stop-color="#0f1734"/>
+      <stop offset="100%" stop-color="#091025"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="20%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#0047AB" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#0047AB" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="80%" cy="80%" r="60%">
+      <stop offset="0%" stop-color="#00B4FF" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#00B4FF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cardStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0047AB"/>
+      <stop offset="100%" stop-color="#00B4FF"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0047AB"/>
+      <stop offset="100%" stop-color="#00B4FF"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#00B4FF" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <metadata>forensiq{svg_meta_day2}</metadata>
+
+  <!-- tool: base64 -> forensiq{svg_tools_needed} :: Zm9yZW5zaXF7c3ZnX3Rvb2xzX25lZWRlZH0= -->
+
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <rect width="1080" height="1080" fill="url(#glow1)"/>
+  <rect width="1080" height="1080" fill="url(#glow2)"/>
+
+  <!-- Header -->
+  <g transform="translate(72,88)">
+    <circle cx="36" cy="32" r="32" fill="#0b183a" stroke="url(#cardStroke)" stroke-opacity="0.6"/>
+    <text x="14" y="38" font-family="Poppins, Arial, Helvetica, sans-serif" font-size="20" fill="#9CDFFF" font-weight="700">DDC</text>
+    <text x="92" y="22" font-family="Poppins, Arial, Helvetica, sans-serif" font-size="30" fill="#00B4FF" font-weight="700">ForensIQ 2025</text>
+    <text x="92" y="56" font-family="Poppins, Arial, Helvetica, sans-serif" font-size="20" fill="#9CCBFF" opacity="0.85">Digital Defense Club • CBIT</text>
+  </g>
+
+  <!-- Title -->
+  <g transform="translate(72,180)">
+    <text font-family="Orbitron, Poppins, Arial" font-weight="700" font-size="42" fill="#E6F2FF">Day 2 Timeline</text>
+    <rect x="0" y="54" width="220" height="10" rx="5" fill="url(#chip)" opacity="0.8"/>
+  </g>
+
+  <!-- Cards -->
+  <g transform="translate(72,260)" filter="url(#shadow)">
+    <rect x="0" y="0" width="936" height="200" rx="20" fill="#0d1431" opacity="0.92" stroke="url(#cardStroke)" stroke-opacity="0.35"/>
+    <circle cx="56" cy="100" r="26" fill="#0b183a" stroke="url(#cardStroke)" stroke-opacity="0.6"/>
+    <text x="96" y="78" font-family="Poppins, Arial" font-size="28" fill="#FFFFFF" font-weight="700">9:30 AM – 12:30 PM</text>
+    <text x="96" y="120" font-family="Poppins, Arial" font-size="24" fill="#9CDFFF">Showcase Forensic Challenges</text>
+    <text x="96" y="156" font-family="Poppins, Arial" font-size="20" fill="#9CCBFF">Venue: TPO Labs 2 &amp; 4</text>
+  </g>
+
+  <g transform="translate(72,500)" filter="url(#shadow)">
+    <rect x="0" y="0" width="936" height="200" rx="20" fill="#0d1636" opacity="0.92" stroke="url(#cardStroke)" stroke-opacity="0.35"/>
+    <circle cx="56" cy="100" r="26" fill="#0b183a" stroke="url(#cardStroke)" stroke-opacity="0.6"/>
+    <text x="96" y="78" font-family="Poppins, Arial" font-size="28" fill="#FFFFFF" font-weight="700">1:30 PM – 3:00 PM</text>
+    <text x="96" y="120" font-family="Poppins, Arial" font-size="24" fill="#9CDFFF">Valedictory &amp; Fun Activities</text>
+    <text x="96" y="156" font-family="Poppins, Arial" font-size="20" fill="#9CCBFF">Venue: N‑Block Seminar Hall</text>
+  </g>
+
+  <!-- Footer info -->
+  <g transform="translate(72,760)">
+    <text font-family="Poppins, Arial" font-size="18" fill="#9CCBFF" opacity="0.9">Dark cobalt theme • Instagram 1080×1080</text>
+  </g>
+</svg>
